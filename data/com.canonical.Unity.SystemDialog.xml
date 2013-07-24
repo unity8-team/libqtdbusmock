@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name="/">
+	<interface name="com.canonical.Unity.SystemDialog">
+
+		<!-- Functions -->
+		<method name="NewDialog">
+			<!-- in -->
+			<arg type="o" name="modelPath" direction="in" />
+			<!-- out -->
+			<arg type="v" name="dialogKey" direction="out" />
+		</method>
+
+		<method name="CloseDialog">
+			<!-- in -->
+			<arg type="v" name="dialogKey" direction="in" />
+		</method>
+
+
+		<!-- Signals -->
+		<signal name="DialogCanceled">
+			<arg type="v" name="dialogKey" direction="out" />
+		</signal>
+
+<!-- End of interesting stuff -->
+
+	</interface>
+</node>
