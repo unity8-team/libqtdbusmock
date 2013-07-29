@@ -2,14 +2,16 @@
 set(
 	QTDBUSMOCK_SRC
 	DBusMock.cpp
+	Method.cpp
 	MethodCall.cpp
+	NamedMethodCall.cpp
 )
 
 set_source_files_properties(
 	"${DATA_DIR}/org.freedesktop.DBus.Mock.xml"
 	PROPERTIES
 	NO_NAMESPACE YES
-	INCLUDE "libqtdbusmock/MethodCall.h"
+	INCLUDE "libqtdbusmock/MockInterfaceClasses.h"
 )
 
 set_source_files_properties(

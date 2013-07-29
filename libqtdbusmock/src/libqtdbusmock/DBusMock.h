@@ -20,7 +20,9 @@
 #define QTDBUSMOCK_DBUSMOCK_H_
 
 #include <libqtdbustest/DBusTestRunner.h>
+#include <libqtdbusmock/MockInterface.h>
 #include <libqtdbusmock/NetworkManagerMockInterface.h>
+#include <libqtdbusmock/MockInterfaceClasses.h>
 
 namespace QtDBusMock {
 
@@ -30,14 +32,25 @@ public:
 
 	virtual ~DBusMock();
 
+	static void registerMetaTypes();
+
 	virtual void registerNetworkManager();
 
-	virtual NetworkManagerMockInterface & networkManagerMock();
+	virtual void registerCustomMock(const QString &name, const QString &path,
+			const QString &interface, QDBusConnection::BusType);
+
+	virtual NetworkManagerMockInterface & networkManagerInterface();
+
+	virtual OrgFreedesktopDBusMockInterface & mockInterface(const QString &name,
+			const QString &path, const QString &interface,
+			QDBusConnection::BusType busType);
 
 protected:
 	QtDBusTest::DBusTestRunner &m_testRunner;
 
 	QScopedPointer<NetworkManagerMockInterface> m_networkManagerMock;
+
+	QMap<QString, QSharedPointer<OrgFreedesktopDBusMockInterface> > m_mockInterfaces;
 };
 
 }

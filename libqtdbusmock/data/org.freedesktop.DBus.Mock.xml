@@ -1,17 +1,65 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
 <node name="/org/freedesktop/NetworkManager" xmlns:tp="http://telepathy.freedesktop.org/wiki/DbusSpec#extensions-v0">
 	<interface name="org.freedesktop.DBus.Mock">
-
+		<method name="ClearCalls">
+		</method>
+		<method name="AddTemplate">
+			<annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QVariantMap"/>
+			<arg direction="in"	type="s" name="xtemplate" />
+			<arg direction="in"	type="a{sv}" name="parameters" />
+		</method>
+		<signal name="MethodCalled">
+			<arg type="s" name="name" />
+			<arg type="av" name="args" />
+		</signal>
+		<method name="AddProperties">
+			<annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QVariantMap"/>
+			<arg direction="in"	type="s" name="interface" />
+			<arg direction="in"	type="a{sv}" name="properties" />
+		</method>
 		<method name="GetMethodCalls">
 			<annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QList&lt;QtDBusMock::MethodCall&gt;"/>
-			<arg name="method" type="s" direction="in"/>
-			<arg name="calls" type="a(tav)" direction="out"/>
+			<arg direction="in"	type="s" name="method" />
+			<arg direction="out" type="a(tav)" />
 		</method>
-		
-		<method name="Foo">
-			<arg name="method" type="t" direction="in"/>
+		<method name="GetCalls">
+			<annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QList&lt;QtDBusMock::NamedMethodCall&gt;"/>
+			<arg direction="out" type="a(tsav)" />
 		</method>
-
+		<method name="AddMethods">
+			<annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QList&lt;QtDBusMock::Method&gt;"/>
+			<arg direction="in"	type="s" name="interface" />
+			<arg direction="in"	type="a(ssss)" name="methods" />
+		</method>
+		<method name="AddMethod">
+			<arg direction="in"	type="s" name="interface" />
+			<arg direction="in"	type="s" name="name" />
+			<arg direction="in"	type="s" name="in_sig" />
+			<arg direction="in"	type="s" name="out_sig" />
+			<arg direction="in"	type="s" name="code" />
+		</method>
+		<method name="EmitSignal">
+			<arg direction="in"	type="s" name="interface" />
+			<arg direction="in"	type="s" name="name" />
+			<arg direction="in"	type="s" name="signature" />
+			<arg direction="in"	type="av" name="args" />
+		</method>
+		<method name="RemoveObject">
+			<arg direction="in"	type="s" name="path" />
+		</method>
+		<method name="AddProperty">
+			<arg direction="in"	type="s" name="interface" />
+			<arg direction="in"	type="s" name="name" />
+			<arg direction="in"	type="v" name="value" />
+		</method>
+		<method name="AddObject">
+			<annotation name="org.qtproject.QtDBus.QtTypeName.In2" value="QVariantMap"/>
+			<annotation name="org.qtproject.QtDBus.QtTypeName.In3" value="QList&lt;QtDBusMock::Method&gt;"/>
+			<arg direction="in"	type="s" name="path" />
+			<arg direction="in"	type="s" name="interface" />
+			<arg direction="in"	type="a{sv}" name="properties" />
+			<arg direction="in"	type="a(ssss)" name="methods" />
+		</method>
 	</interface>
 </node>

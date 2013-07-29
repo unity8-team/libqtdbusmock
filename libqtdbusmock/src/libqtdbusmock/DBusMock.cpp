@@ -31,6 +31,12 @@ DBusMock::DBusMock(DBusTestRunner &testRunner) :
 DBusMock::~DBusMock() {
 }
 
+void DBusMock::registerMetaTypes() {
+	Method::registerMetaType();
+	MethodCall::registerMetaType();
+	NamedMethodCall::registerMetaType();
+}
+
 void DBusMock::registerNetworkManager() {
 	m_testRunner.registerService(
 			DBusServicePtr(
@@ -40,7 +46,17 @@ void DBusMock::registerNetworkManager() {
 									<< "networkmanager")));
 }
 
-NetworkManagerMockInterface & DBusMock::networkManagerMock() {
+void DBusMock::registerCustomMock(const QString &name, const QString &path,
+		const QString &interface, QDBusConnection::BusType busType) {
+	m_testRunner.registerService(
+			DBusServicePtr(
+					new QProcessDBusService(NM_DBUS_INTERFACE, busType,
+							"python3",
+							QStringList() << "-m" << "dbusmock" << name << path
+									<< interface)));
+}
+
+NetworkManagerMockInterface & DBusMock::networkManagerInterface() {
 	if (m_networkManagerMock.isNull()) {
 		m_networkManagerMock.reset(
 				new NetworkManagerMockInterface(NM_DBUS_INTERFACE, NM_DBUS_PATH,
@@ -48,3 +64,30 @@ NetworkManagerMockInterface & DBusMock::networkManagerMock() {
 	}
 	return *m_networkManagerMock;
 }
+
+OrgFreedesktopDBusMockInterface & DBusMock::mockInterface(const QString &name,
+		const QString &path, const QString &interface,
+		QDBusConnection::BusType busType) {
+	auto it(m_mockInterfaces.find(name));
+	if (it == m_mockInterfaces.end()) {
+		switch (busType) {
+		case QDBusConnection::SystemBus:
+			it = m_mockInterfaces.insert(name,
+					QSharedPointer<OrgFreedesktopDBusMockInterface>(
+							new OrgFreedesktopDBusMockInterface(interface, path,
+									m_testRunner.systemConnection())));
+			break;
+		case QDBusConnection::SessionBus:
+			it = m_mockInterfaces.insert(name,
+					QSharedPointer<OrgFreedesktopDBusMockInterface>(
+							new OrgFreedesktopDBusMockInterface(interface, path,
+									m_testRunner.sessionConnection())));
+			break;
+		case QDBusConnection::ActivationBus:
+			qWarning() << "Unknown bus type";
+			break;
+		}
+	}
+	return **it;
+}
+

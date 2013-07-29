@@ -21,7 +21,7 @@
 #include <QCoreApplication>
 #include <gtest/gtest.h>
 
-#include <libqtdbusmock/MethodCall.h>
+#include <libqtdbusmock/DBusMock.h>
 
 using namespace QtDBusMock;
 
@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
 
 	QCoreApplication application(argc, argv);
 
-	MethodCall::registerMetaType();
+	DBusMock::registerMetaTypes();
 
 	::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();

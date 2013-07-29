@@ -16,72 +16,85 @@
  * Author: Pete Woods <pete.woods@canonical.com>
  */
 
-#include <libqtdbusmock/MethodCall.h>
+#include <libqtdbusmock/NamedMethodCall.h>
 
 using namespace QtDBusMock;
 
-MethodCall::MethodCall() :
+NamedMethodCall::NamedMethodCall() :
 		m_timestamp(0) {
 }
 
-MethodCall::MethodCall(const MethodCall &other) :
-		m_timestamp(other.m_timestamp), m_args(other.m_args) {
+NamedMethodCall::NamedMethodCall(const NamedMethodCall &other) :
+		m_timestamp(other.m_timestamp), m_methodName(other.m_methodName), m_args(
+				other.m_args) {
 }
 
-MethodCall& MethodCall::operator=(const MethodCall &other) {
+NamedMethodCall& NamedMethodCall::operator=(const NamedMethodCall &other) {
 	m_timestamp = other.m_timestamp;
+	m_methodName = other.m_methodName;
 	m_args = other.m_args;
 
 	return *this;
 }
 
-MethodCall::~MethodCall() {
+NamedMethodCall::~NamedMethodCall() {
 }
 
-void MethodCall::registerMetaType() {
-	qRegisterMetaType<MethodCall>("QtDBusMock::MethodCall");
+void NamedMethodCall::registerMetaType() {
+	qRegisterMetaType<NamedMethodCall>("QtDBusMock::NamedMethodCall");
 
-	qDBusRegisterMetaType<MethodCall>();
-	qDBusRegisterMetaType<QList<MethodCall>>();
+	qDBusRegisterMetaType<NamedMethodCall>();
+	qDBusRegisterMetaType<QList<NamedMethodCall>>();
 }
 
-const quint64 & MethodCall::timestamp() const {
+const QString & NamedMethodCall::methodName() const {
+	return m_methodName;
+}
+
+const quint64 & NamedMethodCall::timestamp() const {
 	return m_timestamp;
 }
 
-const QVariantList & MethodCall::args() const {
+const QVariantList & NamedMethodCall::args() const {
 	return m_args;
 }
 
-void MethodCall::setTimestamp(quint64 timestamp) {
+void NamedMethodCall::setMethodName(const QString &methodName) {
+	m_methodName = methodName;
+}
+
+void NamedMethodCall::setTimestamp(quint64 timestamp) {
 	m_timestamp = timestamp;
 }
 
-void MethodCall::setArgs(const QVariantList &args) {
+void NamedMethodCall::setArgs(const QVariantList &args) {
 	m_args = args;
 }
 
 QDBusArgument &operator<<(QDBusArgument &argument,
-		const MethodCall& methodCall) {
+		const NamedMethodCall& methodCall) {
 
 	argument.beginStructure();
-	argument << methodCall.timestamp() << methodCall.args();
+	argument << methodCall.timestamp() << methodCall.methodName()
+			<< methodCall.args();
 	argument.endStructure();
 
 	return argument;
 }
 
 const QDBusArgument &operator>>(const QDBusArgument &argument,
-		MethodCall &methodCall) {
+		NamedMethodCall &methodCall) {
 
 	quint64 timestamp;
+	QString methodName;
 	QVariantList args;
 
 	argument.beginStructure();
-	argument >> timestamp >> args;
+	argument >> timestamp >> methodName >> args;
 	argument.endStructure();
 
 	methodCall.setTimestamp(timestamp);
+	methodCall.setMethodName(methodName);
 	methodCall.setArgs(args);
 
 	return argument;

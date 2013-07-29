@@ -40,8 +40,7 @@ namespace {
 class TestNetworkPrompt: public Test {
 protected:
 	TestNetworkPrompt() :
-			dbusMock(dbusTestRunner), networkManagerMock(NM_DBUS_INTERFACE,
-					NM_DBUS_PATH, dbusTestRunner.systemConnection()) {
+			dbusMock(dbusTestRunner) {
 
 		dbusMock.registerNetworkManager();
 		dbusTestRunner.startServices();
@@ -56,7 +55,6 @@ protected:
 
 	QProcess networkManagerService;
 
-	OrgFreedesktopDBusMockInterface networkManagerMock;
 };
 
 TEST_F(TestNetworkPrompt, ActivatesWithExistingConnection) {
@@ -65,7 +63,8 @@ TEST_F(TestNetworkPrompt, ActivatesWithExistingConnection) {
 	properties.Set(NM_DBUS_INTERFACE, "WirelessEnabled", QVariant(true)).waitForFinished();
 	properties.Set(NM_DBUS_INTERFACE, "State", QVariant(NM_STATE_DISCONNECTED)).waitForFinished();
 
-	NetworkManagerMockInterface &networkManager(dbusMock.networkManagerMock());
+	NetworkManagerMockInterface &networkManager(
+			dbusMock.networkManagerInterface());
 	networkManager.AddWiFiDevice("device", "eth1", NM_DEVICE_STATE_DISCONNECTED).waitForFinished();
 	networkManager.AddAccessPoint(
 			"/org/freedesktop/NetworkManager/Devices/device", "ap", "ssid",
@@ -78,6 +77,9 @@ TEST_F(TestNetworkPrompt, ActivatesWithExistingConnection) {
 			dbusTestRunner.systemConnection());
 	networkPrompt.check();
 
+	OrgFreedesktopDBusMockInterface &networkManagerMock(
+			dbusMock.mockInterface(NM_DBUS_SERVICE, NM_DBUS_PATH,
+					NM_DBUS_INTERFACE, QDBusConnection::SystemBus));
 	QList<MethodCall> methodCalls(
 			networkManagerMock.GetMethodCalls("ActivateConnection"));
 
@@ -91,7 +93,8 @@ TEST_F(TestNetworkPrompt, ActivatesWithoutExistingConnection) {
 	properties.Set(NM_DBUS_INTERFACE, "WirelessEnabled", QVariant(true)).waitForFinished();
 	properties.Set(NM_DBUS_INTERFACE, "State", QVariant(NM_STATE_DISCONNECTED)).waitForFinished();
 
-	NetworkManagerMockInterface &networkManager(dbusMock.networkManagerMock());
+	NetworkManagerMockInterface &networkManager(
+			dbusMock.networkManagerInterface());
 	networkManager.AddWiFiDevice("device", "eth1", NM_DEVICE_STATE_DISCONNECTED).waitForFinished();
 	networkManager.AddAccessPoint(
 			"/org/freedesktop/NetworkManager/Devices/device", "ap", "ssid",
@@ -101,6 +104,9 @@ TEST_F(TestNetworkPrompt, ActivatesWithoutExistingConnection) {
 			dbusTestRunner.systemConnection());
 	networkPrompt.check();
 
+	OrgFreedesktopDBusMockInterface &networkManagerMock(
+			dbusMock.mockInterface(NM_DBUS_SERVICE, NM_DBUS_PATH,
+					NM_DBUS_INTERFACE, QDBusConnection::SystemBus));
 	QList<MethodCall> methodCalls(
 			networkManagerMock.GetMethodCalls("AddAndActivateConnection"));
 
