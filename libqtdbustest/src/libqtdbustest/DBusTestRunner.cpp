@@ -21,28 +21,50 @@
 using namespace QtDBusTest;
 
 DBusTestRunner::DBusTestRunner() :
-		m_connection("DBusTestRunner") {
+		m_sessionConnection("DBusTestRunner-session"), m_systemConnection(
+				"DBusTestRunner-system") {
 
-	m_dbus.setProcessChannelMode(QProcess::MergedChannels);
-	m_dbus.start("dbus-daemon",
+	// session bus setup
+
+	m_sessionDBus.setProcessChannelMode(QProcess::MergedChannels);
+	m_sessionDBus.start("dbus-daemon",
+			QStringList() << "--config-file" << DBUS_SESSION_CONFIG_FILE
+					<< "--print-address");
+	Q_ASSERT(m_sessionDBus.waitForStarted());
+
+	m_sessionDBus.waitForReadyRead();
+	m_sessionBus = m_sessionDBus.readAll().trimmed();
+
+	qputenv("DBUS_SESSION_BUS_ADDRESS", m_sessionBus.toUtf8());
+
+	m_sessionConnection = QDBusConnection::connectToBus(m_sessionBus,
+			m_sessionBus);
+
+	// system bus setup
+
+	m_systemDBus.setProcessChannelMode(QProcess::MergedChannels);
+	m_systemDBus.start("dbus-daemon",
 			QStringList() << "--config-file" << DBUS_SYSTEM_CONFIG_FILE
 					<< "--print-address");
-	Q_ASSERT(m_dbus.waitForStarted());
+	Q_ASSERT(m_systemDBus.waitForStarted());
 
-	m_dbus.waitForReadyRead();
-	QByteArray readAll(m_dbus.readAll());
-	m_bus = readAll.trimmed();
+	m_systemDBus.waitForReadyRead();
+	m_systemBus = m_systemDBus.readAll().trimmed();
 
-	qputenv("DBUS_SYSTEM_BUS_ADDRESS", m_bus.toUtf8());
+	qputenv("DBUS_SYSTEM_BUS_ADDRESS", m_systemBus.toUtf8());
 
-	m_connection = QDBusConnection::connectToBus(m_bus, m_bus);
+	m_systemConnection = QDBusConnection::connectToBus(m_systemBus,
+			m_systemBus);
 }
 
 DBusTestRunner::~DBusTestRunner() {
 	m_services.clear();
 
-	m_dbus.terminate();
-	Q_ASSERT(m_dbus.waitForFinished());
+	m_sessionDBus.terminate();
+	Q_ASSERT(m_sessionDBus.waitForFinished());
+
+	m_systemDBus.terminate();
+	Q_ASSERT(m_systemDBus.waitForFinished());
 }
 
 void DBusTestRunner::registerService(DBusServicePtr service) {
@@ -51,15 +73,32 @@ void DBusTestRunner::registerService(DBusServicePtr service) {
 
 void DBusTestRunner::startServices() {
 	for (DBusServicePtr service : m_services.values()) {
-		service->start(m_connection, m_bus);
+		switch (service->busType()) {
+		case QDBusConnection::SystemBus:
+			service->start(m_systemConnection, m_systemBus);
+			break;
+		case QDBusConnection::SessionBus:
+			service->start(m_sessionConnection, m_sessionBus);
+			break;
+		case QDBusConnection::ActivationBus:
+			qWarning() << "Unknown bus type";
+			break;
+		}
 	}
 }
 
-const QDBusConnection & DBusTestRunner::connection() const {
-	return m_connection;
+const QDBusConnection & DBusTestRunner::sessionConnection() const {
+	return m_sessionConnection;
 }
 
-const QString & DBusTestRunner::bus() const {
-	return m_bus;
+const QString & DBusTestRunner::sessionBus() const {
+	return m_sessionBus;
 }
 
+const QDBusConnection & DBusTestRunner::systemConnection() const {
+	return m_systemConnection;
+}
+
+const QString & DBusTestRunner::systemBus() const {
+	return m_systemBus;
+}

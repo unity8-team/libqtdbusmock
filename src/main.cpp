@@ -30,7 +30,8 @@ int main(int argc, char *argv[]) {
 	bindtextdomain(GETTEXT_PACKAGE, LOCALE_DIR);
 	textdomain(GETTEXT_PACKAGE);
 
-	NetworkPrompt networkPrompt(QDBusConnection::systemBus());
+	NetworkPrompt networkPrompt(QDBusConnection::sessionBus(),
+			QDBusConnection::systemBus());
 
 	return 0;
 }

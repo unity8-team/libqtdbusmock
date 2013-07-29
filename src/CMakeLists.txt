@@ -8,6 +8,7 @@ set_source_files_properties(
 	"${DATA_DIR}/nm-device.xml"
 	"${DATA_DIR}/nm-device-wifi.xml"
 	"${DATA_DIR}/nm-manager.xml"
+	"${DATA_DIR}/com.canonical.Unity.SystemDialog.xml"
 	PROPERTIES
 	NO_NAMESPACE YES
 )
@@ -28,6 +29,12 @@ qt5_add_dbus_interface(
 	INDICATOR_NETWORK_PROMPT_SOURCES
 	"${DATA_DIR}/nm-device-wifi.xml"
 	NetworkManagerDeviceWirelessInterface
+)
+
+qt5_add_dbus_interface(
+	INDICATOR_NETWORK_PROMPT_SOURCES
+	"${DATA_DIR}/com.canonical.Unity.SystemDialog.xml"
+	UnitySystemDialogInterface
 )
 
 add_library(

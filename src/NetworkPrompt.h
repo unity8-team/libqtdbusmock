@@ -19,18 +19,29 @@
 #ifndef NETWORKPROMPT_H_
 #define NETWORKPROMPT_H_
 
+#include <NetworkManagerInterface.h>
+#include <UnitySystemDialogInterface.h>
+
 #include <QObject>
 #include <QDBusConnection>
 
 class NetworkPrompt: public QObject {
 public:
-	explicit NetworkPrompt(const QDBusConnection &connection, QObject *parent =
-			0);
+	explicit NetworkPrompt(const QDBusConnection &sessionConnection,
+			const QDBusConnection &systemConnection, QObject *parent = 0);
 
 	virtual ~NetworkPrompt();
 
+	virtual void check();
+
 protected:
-	QDBusConnection m_connection;
+	QDBusConnection m_sessionConnection;
+
+	QDBusConnection m_systemConnection;
+
+	OrgFreedesktopNetworkManagerInterface m_networkManager;
+
+	ComCanonicalUnitySystemDialogInterface m_systemDialog;
 };
 
 #endif // NETWORKPROMPT_H_

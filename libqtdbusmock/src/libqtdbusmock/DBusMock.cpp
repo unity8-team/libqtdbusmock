@@ -44,7 +44,7 @@ NetworkManagerMockInterface & DBusMock::networkManagerMock() {
 	if (m_networkManagerMock.isNull()) {
 		m_networkManagerMock.reset(
 				new NetworkManagerMockInterface(NM_DBUS_INTERFACE, NM_DBUS_PATH,
-						m_testRunner.connection()));
+						m_testRunner.systemConnection()));
 	}
 	return *m_networkManagerMock;
 }

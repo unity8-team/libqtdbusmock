@@ -45,7 +45,7 @@ qt5_add_dbus_interface(
 
 add_library(
 	qtdbusmock
-	SHARED
+	STATIC
 	${QTDBUSMOCK_SRC}
 )
 

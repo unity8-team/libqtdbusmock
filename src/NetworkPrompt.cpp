@@ -16,19 +16,25 @@
  * Author: Pete Woods <pete.woods@canonical.com>
  */
 
-#include <NetworkManagerInterface.h>
 #include <NetworkManagerDeviceInterface.h>
 #include <NetworkManagerDeviceWirelessInterface.h>
 #include <NetworkPrompt.h>
 
 #include <NetworkManager.h>
 
-NetworkPrompt::NetworkPrompt(const QDBusConnection &connection, QObject *parent) :
-		QObject(parent), m_connection(connection) {
+NetworkPrompt::NetworkPrompt(const QDBusConnection &sessionConnection,
+		const QDBusConnection &systemConnection, QObject *parent) :
+		QObject(parent), m_sessionConnection(sessionConnection), m_systemConnection(
+				systemConnection), m_networkManager(NM_DBUS_SERVICE,
+				NM_DBUS_PATH, m_systemConnection), m_systemDialog(
+				"com.canonical.Unity.SystemDialog",
+				"/com/canonical/Unity/SystemDialog", m_sessionConnection) {
+}
 
-	OrgFreedesktopNetworkManagerInterface networkManager(NM_DBUS_SERVICE,
-			NM_DBUS_PATH, connection);
+NetworkPrompt::~NetworkPrompt() {
+}
 
+void NetworkPrompt::check() {
 	// not on internet
 	// and wi-fi is on
 	// and networks are available
@@ -38,20 +44,20 @@ NetworkPrompt::NetworkPrompt(const QDBusConnection &connection, QObject *parent)
 
 	// assuming we only get pinged when the prompt preference is enabled
 	// and by someone trying to use the internet
-	if (networkManager.wirelessEnabled()
-			&& networkManager.state() == NM_STATE_DISCONNECTED) {
+	if (m_networkManager.wirelessEnabled()
+			&& m_networkManager.state() == NM_STATE_DISCONNECTED) {
 		qDebug()
 				<< "it seems we're not connected to any networks, and wifi is enabled";
 
-		QList<QDBusObjectPath> devicePaths(networkManager.GetDevices());
+		QList<QDBusObjectPath> devicePaths(m_networkManager.GetDevices());
 
 		for (const QDBusObjectPath &devicePath : devicePaths) {
 			OrgFreedesktopNetworkManagerDeviceInterface device(NM_DBUS_SERVICE,
-					devicePath.path(), connection);
+					devicePath.path(), m_systemConnection);
 			if (device.deviceType() == NM_DEVICE_TYPE_WIFI) {
 
 				OrgFreedesktopNetworkManagerDeviceWirelessInterface wifiDevice(
-						NM_DBUS_SERVICE, devicePath.path(), connection);
+						NM_DBUS_SERVICE, devicePath.path(), m_systemConnection);
 
 				QDBusPendingReply<void> reply(
 						wifiDevice.RequestScan(QVariantMap()));
@@ -65,13 +71,13 @@ NetworkPrompt::NetworkPrompt(const QDBusConnection &connection, QObject *parent)
 					if (connectionPaths.empty()) {
 						// if no existing connections, then add a new one
 						QDBusObjectPath networkConnection(
-								networkManager.AddAndActivateConnection(
+								m_networkManager.AddAndActivateConnection(
 										QVariantMap(), devicePath,
 										accessPointPath));
 					} else {
 						// we already have a connection, so just activate it
 						QDBusObjectPath networkConnection(
-								networkManager.ActivateConnection(
+								m_networkManager.ActivateConnection(
 										connectionPaths.first(), devicePath,
 										accessPointPath));
 					}
@@ -79,8 +85,5 @@ NetworkPrompt::NetworkPrompt(const QDBusConnection &connection, QObject *parent)
 			}
 		}
 	}
-}
-
-NetworkPrompt::~NetworkPrompt() {
 }
 

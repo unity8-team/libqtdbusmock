@@ -11,7 +11,7 @@ set(
 
 add_library(
 	qtdbustest
-	SHARED
+	STATIC
 	${QTDBUSTEST_SRC}
 )
 

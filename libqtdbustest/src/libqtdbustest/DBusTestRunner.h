@@ -34,20 +34,30 @@ public:
 
 	virtual void startServices();
 
-	virtual const QDBusConnection & connection() const;
+	virtual const QDBusConnection & sessionConnection() const;
 
-	virtual const QString & bus() const;
+	virtual const QString & sessionBus() const;
+
+	virtual const QDBusConnection & systemConnection() const;
+
+	virtual const QString & systemBus() const;
 
 	virtual void registerService(DBusServicePtr service);
 
 protected:
 	void startService(const DBusService &service);
 
-	QString m_bus;
+	QString m_sessionBus;
 
-	QDBusConnection m_connection;
+	QDBusConnection m_sessionConnection;
 
-	QProcess m_dbus;
+	QProcess m_sessionDBus;
+
+	QString m_systemBus;
+
+	QDBusConnection m_systemConnection;
+
+	QProcess m_systemDBus;
 
 	QMap<QString, DBusServicePtr> m_services;
 };
