@@ -63,7 +63,7 @@
     </property>
 
     <signal name="PropertiesChanged">
-        <annotation name="org.qtproject.QtDBus.QtTypeName.In0" value="<type>"/>
+        <annotation name="org.qtproject.QtDBus.QtTypeName.In0" value="QVariantMap"/>
         <arg name="properties" type="a{sv}" tp:type="String_Variant_Map">
             <tp:docstring>
                 A dictionary containing the FIXME: check changed parameters.

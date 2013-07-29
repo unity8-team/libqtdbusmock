@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<node name="/org/freedesktop/NetworkManager" xmlns:tp="http://telepathy.freedesktop.org/wiki/DbusSpec#extensions-v0">
+	<interface name="org.freedesktop.DBus.Mock">
+
+		<method name="AddWiFiDevice">
+			<arg name="device_name" type="s" direction="in"/>
+			<arg name="interface_name" type="s" direction="in"/>
+			<arg name="state" type="i" direction="in"/>
+		</method>
+
+		<method name="AddAccessPoint">
+			<arg name="dev_path" type="s" direction="in"/>
+			<arg name="ap_name" type="s" direction="in"/>
+			<arg name="ssid" type="s" direction="in"/>
+			<arg name="hw_address" type="s" direction="in"/>
+			<arg name="mode" type="u" direction="in"/>
+			<arg name="frequency" type="u" direction="in"/>
+			<arg name="rate" type="u" direction="in"/>
+			<arg name="strength" type="y" direction="in"/>
+			<arg name="security" type="u" direction="in"/>
+		</method>
+
+		<method name="AddMockConnection">
+			<arg name="device_name" type="s" direction="in"/>
+			<arg name="connection_name" type="s" direction="in"/>
+			<arg name="ssid" type="s" direction="in"/>
+		</method>
+
+	</interface>
+</node>

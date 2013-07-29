@@ -65,6 +65,13 @@ configure_file(
 	"${SOURCE_BINARY_DIR}/config.h"
 )
 
+
+add_subdirectory("libqtdbustest")
+include_directories(${QTDBUSTEST_INCLUDE_DIRS})
+
+add_subdirectory("libqtdbusmock")
+include_directories(${QTDBUSMOCK_INCLUDE_DIRS})
+
 #add_subdirectory("po")
 add_subdirectory("src")
 add_subdirectory("data")

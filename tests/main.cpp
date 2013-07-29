@@ -21,6 +21,10 @@
 #include <QCoreApplication>
 #include <gtest/gtest.h>
 
+#include <libqtdbusmock/MethodCall.h>
+
+using namespace QtDBusMock;
+
 int main(int argc, char **argv) {
 	qputenv("LANG", "C.UTF-8");
 	unsetenv("LC_ALL");
@@ -30,6 +34,9 @@ int main(int argc, char **argv) {
 	textdomain(GETTEXT_PACKAGE);
 
 	QCoreApplication application(argc, argv);
+
+	MethodCall::registerMetaType();
+
 	::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 }
