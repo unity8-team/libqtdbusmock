@@ -38,7 +38,7 @@ public:
 
 	virtual QDBusConnection::BusType busType() const;
 
-	virtual void start(const QDBusConnection &connection, const QString &bus) = 0;
+	virtual void start(const QDBusConnection &connection) = 0;
 
 protected:
 	QString m_interface;

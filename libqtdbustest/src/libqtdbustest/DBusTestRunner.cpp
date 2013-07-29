@@ -68,17 +68,17 @@ DBusTestRunner::~DBusTestRunner() {
 }
 
 void DBusTestRunner::registerService(DBusServicePtr service) {
-	m_services.insert(service->interface(), service);
+	m_services.push_back(service);
 }
 
 void DBusTestRunner::startServices() {
-	for (DBusServicePtr service : m_services.values()) {
+	for (DBusServicePtr service : m_services) {
 		switch (service->busType()) {
 		case QDBusConnection::SystemBus:
-			service->start(m_systemConnection, m_systemBus);
+			service->start(m_systemConnection);
 			break;
 		case QDBusConnection::SessionBus:
-			service->start(m_sessionConnection, m_sessionBus);
+			service->start(m_sessionConnection);
 			break;
 		case QDBusConnection::ActivationBus:
 			qWarning() << "Unknown bus type";

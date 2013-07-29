@@ -33,38 +33,31 @@ QProcessDBusService::QProcessDBusService(const QString &interface,
 
 QProcessDBusService::~QProcessDBusService() {
 	m_process.terminate();
-	Q_ASSERT(m_process.waitForFinished());
+	m_process.waitForFinished();
 
 	m_process.waitForReadyRead();
 	qDebug() << m_process.readAll();
 }
 
-void QProcessDBusService::start(const QDBusConnection &connection,
-		const QString &bus) {
+void QProcessDBusService::start(const QDBusConnection &connection) {
 	QDBusServiceWatcher watcher(m_interface, connection,
 			QDBusServiceWatcher::WatchForRegistration);
 	QSignalSpy spy(&watcher,
 			SIGNAL(serviceOwnerChanged(const QString &,const QString &,const QString &)));
 
-	QProcessEnvironment env(QProcessEnvironment::systemEnvironment());
-	switch (m_busType) {
-	case QDBusConnection::SystemBus:
-		env.insert("DBUS_SYSTEM_BUS_ADDRESS", bus);
-		break;
-	case QDBusConnection::SessionBus:
-		env.insert("DBUS_SESSION_BUS_ADDRESS", bus);
-		break;
-	case QDBusConnection::ActivationBus:
-		qWarning() << "Unknown bus type";
-		break;
-	}
-
 	m_process.setProcessChannelMode(QProcess::MergedChannels);
-	m_process.setProcessEnvironment(env);
 	m_process.start(m_program, m_arguments);
 
 	spy.wait();
-	Q_ASSERT(!spy.empty());
+	if (spy.empty()) {
+		qWarning() << "Process " << m_program << " with arguments "
+				<< m_arguments << " for interface " << m_interface
+				<< "failed to start";
+	}
 	QVariantList arguments(spy.takeFirst());
-	Q_ASSERT(m_interface == arguments.first().toString());
+	if (m_interface != arguments.first().toString()) {
+		qWarning() << "Process " << m_program << " with arguments "
+				<< m_arguments << " for interface " << m_interface
+				<< " - incorrect service appeared";
+	}
 }

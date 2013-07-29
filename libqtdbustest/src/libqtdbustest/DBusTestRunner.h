@@ -59,7 +59,7 @@ protected:
 
 	QProcess m_systemDBus;
 
-	QMap<QString, DBusServicePtr> m_services;
+	QList<DBusServicePtr> m_services;
 };
 
 }

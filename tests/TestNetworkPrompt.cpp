@@ -43,6 +43,12 @@ protected:
 			dbusMock(dbusTestRunner) {
 
 		dbusMock.registerNetworkManager();
+
+		dbusMock.registerCustomMock("com.canonical.Unity.SystemDialog",
+				"/com/canonical/Unity/SystemDialog",
+				"com.canonical.Unity.SystemDialog",
+				QDBusConnection::SessionBus);
+
 		dbusTestRunner.startServices();
 	}
 

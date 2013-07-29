@@ -48,12 +48,15 @@ void DBusMock::registerNetworkManager() {
 
 void DBusMock::registerCustomMock(const QString &name, const QString &path,
 		const QString &interface, QDBusConnection::BusType busType) {
+	QStringList args;
+	if (busType == QDBusConnection::SystemBus) {
+		args << "-s";
+	}
+	args << "-m" << "dbusmock" << name << path << interface;
 	m_testRunner.registerService(
 			DBusServicePtr(
-					new QProcessDBusService(NM_DBUS_INTERFACE, busType,
-							"python3",
-							QStringList() << "-m" << "dbusmock" << name << path
-									<< interface)));
+					new QProcessDBusService(interface, busType, "python3",
+							args)));
 }
 
 NetworkManagerMockInterface & DBusMock::networkManagerInterface() {

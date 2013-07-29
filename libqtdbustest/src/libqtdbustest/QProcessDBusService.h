@@ -35,7 +35,7 @@ public:
 
 	virtual ~QProcessDBusService();
 
-	virtual void start(const QDBusConnection &connection, const QString &bus);
+	virtual void start(const QDBusConnection &connection);
 
 protected:
 	QString m_program;
