@@ -16,24 +16,15 @@
  * Author: Pete Woods <pete.woods@canonical.com>
  */
 
-#include <config.h>
-#include <Localisation.h>
-#include <NetworkPrompt.h>
-#include <InitGlib.h>
+#ifndef INITGLIB_H_
+#define INITGLIB_H_
 
-#include <QCoreApplication>
-#include <QDBusConnection>
+class InitGlib {
+public:
+	InitGlib();
+	virtual ~InitGlib();
 
-int main(int argc, char *argv[]) {
-	QCoreApplication application(argc, argv);
-	InitGlib::init();
+	static void init();
+};
 
-	setlocale(LC_ALL, "");
-	bindtextdomain(GETTEXT_PACKAGE, LOCALE_DIR);
-	textdomain(GETTEXT_PACKAGE);
-
-	NetworkPrompt networkPrompt(QDBusConnection::sessionBus(),
-			QDBusConnection::systemBus());
-
-	return 0;
-}
+#endif /* INITGLIB_H_ */

@@ -21,10 +21,11 @@
 			<arg name="security" type="u" direction="in"/>
 		</method>
 
-		<method name="AddMockConnection">
+		<method name="AddWiFiConnection">
 			<arg name="device_name" type="s" direction="in"/>
 			<arg name="connection_name" type="s" direction="in"/>
 			<arg name="ssid" type="s" direction="in"/>
+			<arg name="key_mgmt" type="s" direction="in"/>
 		</method>
 
 	</interface>

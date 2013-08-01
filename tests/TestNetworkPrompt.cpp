@@ -1,17 +1,17 @@
 /*
  * Copyright (C) 2013 Canonical, Ltd.
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; version 3.
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License version 3, as published
+ * by the Free Software Foundation.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranties of
+ * MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
+ * PURPOSE.  See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author: Pete Woods <pete.woods@canonical.com>
  */
@@ -75,9 +75,9 @@ TEST_F(TestNetworkPrompt, ActivatesWithExistingConnection) {
 	networkManager.AddAccessPoint(
 			"/org/freedesktop/NetworkManager/Devices/device", "ap", "ssid",
 			"11:22:33:44:55:66", 0, 0, 0, 's', 0).waitForFinished();
-	networkManager.AddMockConnection(
+	networkManager.AddWiFiConnection(
 			"/org/freedesktop/NetworkManager/Devices/device", "connection",
-			"the ssid").waitForFinished();
+			"the ssid", "wpa-psk").waitForFinished();
 
 	NetworkPrompt networkPrompt(dbusTestRunner.sessionConnection(),
 			dbusTestRunner.systemConnection());
@@ -90,7 +90,8 @@ TEST_F(TestNetworkPrompt, ActivatesWithExistingConnection) {
 			networkManagerMock.GetMethodCalls("ActivateConnection"));
 
 	ASSERT_EQ(1, methodCalls.size());
-	ASSERT_EQ(3, methodCalls.first().args().size());
+	const QVariantList &args(methodCalls.first().args());
+	ASSERT_EQ(3, args.size());
 }
 
 TEST_F(TestNetworkPrompt, ActivatesWithoutExistingConnection) {

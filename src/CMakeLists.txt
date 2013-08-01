@@ -2,12 +2,15 @@
 set(
 	INDICATOR_NETWORK_PROMPT_SOURCES
 	NetworkPrompt.cpp
+	InitGlib.cpp
+	WiFiMenu.cpp
 )
 
 set_source_files_properties(
 	"${DATA_DIR}/nm-device.xml"
 	"${DATA_DIR}/nm-device-wifi.xml"
 	"${DATA_DIR}/nm-manager.xml"
+	"${DATA_DIR}/nm-access-point.xml"
 	"${DATA_DIR}/com.canonical.Unity.SystemDialog.xml"
 	PROPERTIES
 	NO_NAMESPACE YES
@@ -33,6 +36,12 @@ qt5_add_dbus_interface(
 
 qt5_add_dbus_interface(
 	INDICATOR_NETWORK_PROMPT_SOURCES
+	"${DATA_DIR}/nm-access-point.xml"
+	NetworkManagerAccessPointInterface
+)
+
+qt5_add_dbus_interface(
+	INDICATOR_NETWORK_PROMPT_SOURCES
 	"${DATA_DIR}/com.canonical.Unity.SystemDialog.xml"
 	UnitySystemDialogInterface
 )
@@ -47,6 +56,12 @@ qt5_use_modules(
 	indicator-network-prompt
 	Core
 	DBus
+)
+
+target_link_libraries(
+	indicator-network-prompt
+	${GLIBMM_LIBRARIES}
+	${GIOMM_LIBRARIES}
 )
 
 add_executable(

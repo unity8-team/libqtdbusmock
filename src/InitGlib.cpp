@@ -16,24 +16,16 @@
  * Author: Pete Woods <pete.woods@canonical.com>
  */
 
-#include <config.h>
-#include <Localisation.h>
-#include <NetworkPrompt.h>
 #include <InitGlib.h>
 
-#include <QCoreApplication>
-#include <QDBusConnection>
+#include <giomm/init.h>
 
-int main(int argc, char *argv[]) {
-	QCoreApplication application(argc, argv);
-	InitGlib::init();
+InitGlib::InitGlib() {
+}
 
-	setlocale(LC_ALL, "");
-	bindtextdomain(GETTEXT_PACKAGE, LOCALE_DIR);
-	textdomain(GETTEXT_PACKAGE);
+InitGlib::~InitGlib() {
+}
 
-	NetworkPrompt networkPrompt(QDBusConnection::sessionBus(),
-			QDBusConnection::systemBus());
-
-	return 0;
+void InitGlib::init() {
+	Gio::init();
 }

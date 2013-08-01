@@ -36,6 +36,7 @@ DBusTestRunner::DBusTestRunner() :
 	m_sessionBus = m_sessionDBus.readAll().trimmed();
 
 	qputenv("DBUS_SESSION_BUS_ADDRESS", m_sessionBus.toUtf8());
+	qDebug() << "DBUS_SESSION_BUS_ADDRESS =" << m_sessionBus;
 
 	m_sessionConnection = QDBusConnection::connectToBus(m_sessionBus,
 			m_sessionBus);
@@ -52,6 +53,7 @@ DBusTestRunner::DBusTestRunner() :
 	m_systemBus = m_systemDBus.readAll().trimmed();
 
 	qputenv("DBUS_SYSTEM_BUS_ADDRESS", m_systemBus.toUtf8());
+	qDebug() << "DBUS_SYSTEM_BUS_ADDRESS =" << m_systemBus;
 
 	m_systemConnection = QDBusConnection::connectToBus(m_systemBus,
 			m_systemBus);

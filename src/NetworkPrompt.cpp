@@ -1,24 +1,25 @@
 /*
  * Copyright (C) 2013 Canonical, Ltd.
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; version 3.
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License version 3, as published
+ * by the Free Software Foundation.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranties of
+ * MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
+ * PURPOSE.  See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author: Pete Woods <pete.woods@canonical.com>
  */
 
-#include <NetworkManagerDeviceInterface.h>
 #include <NetworkManagerDeviceWirelessInterface.h>
+#include <NetworkManagerAccessPointInterface.h>
 #include <NetworkPrompt.h>
+#include <WiFiMenu.h>
 
 #include <NetworkManager.h>
 
@@ -26,12 +27,29 @@ NetworkPrompt::NetworkPrompt(const QDBusConnection &sessionConnection,
 		const QDBusConnection &systemConnection, QObject *parent) :
 		QObject(parent), m_sessionConnection(sessionConnection), m_systemConnection(
 				systemConnection), m_networkManager(NM_DBUS_SERVICE,
-				NM_DBUS_PATH, m_systemConnection), m_systemDialog(
-				"com.canonical.Unity.SystemDialog",
-				"/com/canonical/Unity/SystemDialog", m_sessionConnection) {
+				NM_DBUS_PATH, m_systemConnection) {
 }
 
 NetworkPrompt::~NetworkPrompt() {
+}
+
+QDBusObjectPath NetworkPrompt::activateAccessPoint(
+		const QDBusObjectPath& accessPointPath,
+		const OrgFreedesktopNetworkManagerDeviceInterface& device,
+		const QDBusObjectPath& devicePath) {
+
+	qDebug() << "access point: " << accessPointPath.path();
+	QList<QDBusObjectPath> connectionPaths(device.availableConnections());
+
+	if (connectionPaths.empty()) {
+		// if no existing connections, then add a new one
+		return m_networkManager.AddAndActivateConnection(QVariantMap(),
+				devicePath, accessPointPath);
+	} else {
+		// we already have a connection, so just activate it
+		return m_networkManager.ActivateConnection(connectionPaths.first(),
+				devicePath, accessPointPath);
+	}
 }
 
 void NetworkPrompt::check() {
@@ -51,39 +69,51 @@ void NetworkPrompt::check() {
 
 		QList<QDBusObjectPath> devicePaths(m_networkManager.GetDevices());
 
-		for (const QDBusObjectPath &devicePath : devicePaths) {
-			OrgFreedesktopNetworkManagerDeviceInterface device(NM_DBUS_SERVICE,
-					devicePath.path(), m_systemConnection);
-			if (device.deviceType() == NM_DEVICE_TYPE_WIFI) {
+		WiFiMenuPtr wifiMenu(new WiFiMenu());
 
-				OrgFreedesktopNetworkManagerDeviceWirelessInterface wifiDevice(
+		for (const QDBusObjectPath &devicePath : devicePaths) {
+			OrgFreedesktopNetworkManagerDeviceInterface deviceInterface(
+					NM_DBUS_SERVICE, devicePath.path(), m_systemConnection);
+			if (deviceInterface.deviceType() == NM_DEVICE_TYPE_WIFI) {
+
+				OrgFreedesktopNetworkManagerDeviceWirelessInterface wifiDeviceInterface(
 						NM_DBUS_SERVICE, devicePath.path(), m_systemConnection);
 
+				DevicePtr device(new Device());
+				device->setPath(devicePath.path().toStdString());
+				wifiMenu->addDevice(device);
+
 				QDBusPendingReply<void> reply(
-						wifiDevice.RequestScan(QVariantMap()));
+						wifiDeviceInterface.RequestScan(QVariantMap()));
+				reply.waitForFinished();
+
 				QList<QDBusObjectPath> accessPointPaths(
-						wifiDevice.GetAccessPoints());
+						wifiDeviceInterface.GetAccessPoints());
 
 				for (const QDBusObjectPath &accessPointPath : accessPointPaths) {
-					qDebug() << "access point: " << accessPointPath.path();
-					QList<QDBusObjectPath> connectionPaths(
-							device.availableConnections());
-					if (connectionPaths.empty()) {
-						// if no existing connections, then add a new one
-						QDBusObjectPath networkConnection(
-								m_networkManager.AddAndActivateConnection(
-										QVariantMap(), devicePath,
-										accessPointPath));
-					} else {
-						// we already have a connection, so just activate it
-						QDBusObjectPath networkConnection(
-								m_networkManager.ActivateConnection(
-										connectionPaths.first(), devicePath,
-										accessPointPath));
-					}
+					OrgFreedesktopNetworkManagerAccessPointInterface accessPointInterface(
+							NM_DBUS_SERVICE, accessPointPath.path(),
+							m_systemConnection);
+
+					AccessPointPtr accessPoint(new AccessPoint());
+					accessPoint->setSsid(accessPointInterface.ssid().data());
+					accessPoint->setAdhoc(
+							accessPointInterface.mode()
+									== NM_802_11_MODE_ADHOC);
+					accessPoint->setSecure(
+							accessPointInterface.flags()
+									== NM_802_11_AP_FLAGS_PRIVACY);
+					accessPoint->setBssid(
+							accessPointInterface.hwAddress().toStdString());
+					accessPoint->setPath(accessPointPath.path().toStdString());
+					device->addAccessPoint(accessPoint);
 				}
+
 			}
 		}
+
+		MenuExporter exporter(wifiMenu);
+//		activateAccessPoint(accessPointPath, device, devicePath);
 	}
 }
 

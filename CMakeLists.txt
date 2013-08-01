@@ -22,6 +22,12 @@ include_directories(${Qt5Test_INCLUDE_DIRS})
 pkg_check_modules(NM REQUIRED libnm-util REQUIRED)
 include_directories(${NM_INCLUDE_DIRS})
 
+pkg_check_modules(GLIBMM REQUIRED glibmm-2.4 REQUIRED)
+include_directories(${GLIBMM_INCLUDE_DIRS})
+
+pkg_check_modules(GIOMM REQUIRED giomm-2.4 REQUIRED)
+include_directories(${GIOMM_INCLUDE_DIRS})
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
