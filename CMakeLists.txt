@@ -28,6 +28,9 @@ include_directories(${GLIBMM_INCLUDE_DIRS})
 pkg_check_modules(GIOMM REQUIRED giomm-2.4 REQUIRED)
 include_directories(${GIOMM_INCLUDE_DIRS})
 
+pkg_check_modules(QMENUMODEL REQUIRED qmenumodel REQUIRED)
+include_directories(${QMENUMODEL_INCLUDE_DIRS})
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

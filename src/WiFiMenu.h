@@ -26,21 +26,45 @@ class WiFiMenuPrivate;
 class AccessPointPrivate;
 class DevicePrivate;
 
+class MenuFactory;
 class MenuExporter;
 class WiFiMenu;
 class Device;
 class AccessPoint;
 
+typedef std::shared_ptr<MenuFactory> MenuFactoryPtr;
 typedef std::shared_ptr<MenuExporter> MenuExporterPtr;
 typedef std::shared_ptr<WiFiMenu> WiFiMenuPtr;
 typedef std::shared_ptr<Device> DevicePtr;
 typedef std::shared_ptr<AccessPoint> AccessPointPtr;
 
-class MenuExporter {
+class MenuFactory {
 public:
+	explicit MenuFactory();
+
+	virtual ~MenuFactory();
+
+	virtual MenuExporterPtr newMenuExporter(WiFiMenuPtr menu) const;
+
+	virtual WiFiMenuPtr newWiFiMenu() const;
+
+	virtual DevicePtr newDevice() const;
+
+	virtual AccessPointPtr newAccessPoint() const;
+};
+
+class MenuExporter {
+	friend class MenuFactory;
+
+protected:
 	explicit MenuExporter(WiFiMenuPtr menu);
 
+public:
 	virtual ~MenuExporter();
+
+	static const std::string DBUS_PATH;
+
+	static const std::string DBUS_NAME;
 
 protected:
 	std::unique_ptr<MenuExporterPrivate> d;
@@ -49,9 +73,12 @@ protected:
 class WiFiMenu {
 	friend class MenuExporter;
 	friend class MenuExporterPrivate;
-public:
+	friend class MenuFactory;
+
+protected:
 	explicit WiFiMenu();
 
+public:
 	virtual ~WiFiMenu();
 
 	virtual void addDevice(DevicePtr device);
@@ -62,10 +89,12 @@ protected:
 
 class Device {
 	friend class WiFiMenu;
+	friend class MenuFactory;
 
-public:
+protected:
 	explicit Device();
 
+public:
 	virtual ~Device();
 
 	virtual void addAccessPoint(AccessPointPtr accessPoint);
@@ -78,9 +107,12 @@ protected:
 
 class AccessPoint {
 	friend class Device;
-public:
+	friend class MenuFactory;
+
+protected:
 	explicit AccessPoint();
 
+public:
 	virtual ~AccessPoint();
 
 	virtual void setSsid(const char *ssid);

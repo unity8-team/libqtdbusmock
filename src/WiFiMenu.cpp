@@ -26,8 +26,6 @@
 #include <giomm/dbusconnection.h>
 #include <giomm/menu.h>
 
-#include <iostream>
-
 using namespace std;
 using namespace Glib;
 using namespace Gio;
@@ -58,14 +56,17 @@ public:
 
 	void bus_acquired_slot(const RefPtr<Connection> &connection, ustring name) {
 		m_connection = connection;
-		cout << "create menu" << name << endl;
 
-		m_exportId = connection->export_menu_model("/com/canonical/testmenu",
+		m_exportId = connection->export_menu_model(MenuExporter::DBUS_PATH,
 				m_menu->d->m_menu);
 
 		//TODO here we pass the menu model to the snap-decision thingy
 
+	}
+
+	bool timeout_slot() {
 		m_mainloop->quit();
+		return false;
 	}
 
 	RefPtr<MainLoop> m_mainloop;
@@ -93,16 +94,45 @@ public:
 class AccessPointPrivate {
 public:
 	AccessPointPrivate() :
-			m_item(MenuItem::create(ustring(), ustring())) {
+			m_item(MenuItem::create("Select access point", ustring())) {
 	}
 
 	RefPtr<MenuItem> m_item;
 };
 
+MenuFactory::MenuFactory() {
+}
+
+MenuFactory::~MenuFactory() {
+}
+
+MenuExporterPtr MenuFactory::newMenuExporter(WiFiMenuPtr menu) const {
+	return MenuExporterPtr(new MenuExporter(menu));
+}
+
+WiFiMenuPtr MenuFactory::newWiFiMenu() const {
+	return WiFiMenuPtr(new WiFiMenu());
+}
+
+DevicePtr MenuFactory::newDevice() const {
+	return DevicePtr(new Device());
+}
+
+AccessPointPtr MenuFactory::newAccessPoint() const {
+	return AccessPointPtr(new AccessPoint());
+}
+
+const string MenuExporter::DBUS_PATH = "/com/canonical/testmenu";
+
+const string MenuExporter::DBUS_NAME = "com.canonical.testmenu";
+
 MenuExporter::MenuExporter(WiFiMenuPtr menu) :
 		d(new MenuExporterPrivate(menu)) {
-	own_name(BUS_TYPE_SESSION, "com.canonical.testmenu",
+	own_name(BUS_TYPE_SESSION, DBUS_NAME,
 			sigc::mem_fun(*d, &MenuExporterPrivate::bus_acquired_slot));
+	Glib::signal_timeout().connect(
+			sigc::mem_fun(*d, &MenuExporterPrivate::timeout_slot), 100);
+
 	d->m_mainloop = MainLoop::create();
 	d->m_mainloop->run();
 
@@ -127,7 +157,6 @@ void WiFiMenu::addDevice(DevicePtr device) {
 
 Device::Device() :
 		d(new DevicePrivate()) {
-
 //	var busy_action_id = device.get_path() + "::is-busy";
 //	var device_item = new MenuItem("Select wireless network", null);
 	d->m_item->set_attribute_value("type",
@@ -148,7 +177,7 @@ void Device::addAccessPoint(AccessPointPtr accessPoint) {
 }
 
 void Device::setPath(const std::string &path) {
-	d->m_item->set_attribute_value("x-canonical-wifi-device-path",
+	d->m_item->set_attribute_value("x-canfonical-wifi-device-path",
 			StringVariant::create(path));
 }
 

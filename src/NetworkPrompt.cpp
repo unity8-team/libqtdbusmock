@@ -19,15 +19,15 @@
 #include <NetworkManagerDeviceWirelessInterface.h>
 #include <NetworkManagerAccessPointInterface.h>
 #include <NetworkPrompt.h>
-#include <WiFiMenu.h>
 
 #include <NetworkManager.h>
 
 NetworkPrompt::NetworkPrompt(const QDBusConnection &sessionConnection,
-		const QDBusConnection &systemConnection, QObject *parent) :
+		const QDBusConnection &systemConnection, MenuFactoryPtr menuFactory,
+		QObject *parent) :
 		QObject(parent), m_sessionConnection(sessionConnection), m_systemConnection(
 				systemConnection), m_networkManager(NM_DBUS_SERVICE,
-				NM_DBUS_PATH, m_systemConnection) {
+				NM_DBUS_PATH, m_systemConnection), m_menuFactory(menuFactory) {
 }
 
 NetworkPrompt::~NetworkPrompt() {
@@ -38,7 +38,6 @@ QDBusObjectPath NetworkPrompt::activateAccessPoint(
 		const OrgFreedesktopNetworkManagerDeviceInterface& device,
 		const QDBusObjectPath& devicePath) {
 
-	qDebug() << "access point: " << accessPointPath.path();
 	QList<QDBusObjectPath> connectionPaths(device.availableConnections());
 
 	if (connectionPaths.empty()) {
@@ -64,12 +63,10 @@ void NetworkPrompt::check() {
 	// and by someone trying to use the internet
 	if (m_networkManager.wirelessEnabled()
 			&& m_networkManager.state() == NM_STATE_DISCONNECTED) {
-		qDebug()
-				<< "it seems we're not connected to any networks, and wifi is enabled";
 
 		QList<QDBusObjectPath> devicePaths(m_networkManager.GetDevices());
 
-		WiFiMenuPtr wifiMenu(new WiFiMenu());
+		WiFiMenuPtr wifiMenu(m_menuFactory->newWiFiMenu());
 
 		for (const QDBusObjectPath &devicePath : devicePaths) {
 			OrgFreedesktopNetworkManagerDeviceInterface deviceInterface(
@@ -79,7 +76,7 @@ void NetworkPrompt::check() {
 				OrgFreedesktopNetworkManagerDeviceWirelessInterface wifiDeviceInterface(
 						NM_DBUS_SERVICE, devicePath.path(), m_systemConnection);
 
-				DevicePtr device(new Device());
+				DevicePtr device(m_menuFactory->newDevice());
 				device->setPath(devicePath.path().toStdString());
 				wifiMenu->addDevice(device);
 
@@ -95,7 +92,7 @@ void NetworkPrompt::check() {
 							NM_DBUS_SERVICE, accessPointPath.path(),
 							m_systemConnection);
 
-					AccessPointPtr accessPoint(new AccessPoint());
+					AccessPointPtr accessPoint(m_menuFactory->newAccessPoint());
 					accessPoint->setSsid(accessPointInterface.ssid().data());
 					accessPoint->setAdhoc(
 							accessPointInterface.mode()
@@ -112,7 +109,8 @@ void NetworkPrompt::check() {
 			}
 		}
 
-		MenuExporter exporter(wifiMenu);
+		MenuExporterPtr exporter(m_menuFactory->newMenuExporter(wifiMenu));
+		//TODO Get the chosed AP back and activate it
 //		activateAccessPoint(accessPointPath, device, devicePath);
 	}
 }

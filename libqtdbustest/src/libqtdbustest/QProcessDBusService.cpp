@@ -35,8 +35,8 @@ QProcessDBusService::~QProcessDBusService() {
 	m_process.terminate();
 	m_process.waitForFinished();
 
-	m_process.waitForReadyRead();
-	qDebug() << m_process.readAll();
+//	m_process.waitForReadyRead();
+//	qDebug() << m_process.readAll();
 }
 
 void QProcessDBusService::start(const QDBusConnection &connection) {

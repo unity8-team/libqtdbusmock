@@ -23,12 +23,16 @@
 #include <libqtdbusmock/MockInterface.h>
 #include <libqtdbusmock/PropertiesInterface.h>
 #include <NetworkManager.h>
+
 #include <stdexcept>
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <QSignalSpy>
 #include <QTest>
 #include <QVariant>
 #include <QDBusVariant>
+#include <QDBusServiceWatcher>
+#include "qmenumodel/qdbusmenumodel.h"
 
 using namespace std;
 using namespace testing;
@@ -40,19 +44,19 @@ namespace {
 class TestNetworkPrompt: public Test {
 protected:
 	TestNetworkPrompt() :
-			dbusMock(dbusTestRunner) {
+			dbusMock(dbusTestRunner), menuFactory(new MenuFactory()) {
 
 		dbusMock.registerNetworkManager();
-
-		dbusMock.registerCustomMock("com.canonical.Unity.SystemDialog",
-				"/com/canonical/Unity/SystemDialog",
-				"com.canonical.Unity.SystemDialog",
-				QDBusConnection::SessionBus);
-
 		dbusTestRunner.startServices();
+
+		menuPrinter.setProcessChannelMode(QProcess::MergedChannels);
+		menuPrinter.start(MENU_PRINTER);
+		menuPrinter.waitForStarted();
 	}
 
 	virtual ~TestNetworkPrompt() {
+		menuPrinter.terminate();
+		menuPrinter.waitForFinished();
 	}
 
 	DBusTestRunner dbusTestRunner;
@@ -61,6 +65,9 @@ protected:
 
 	QProcess networkManagerService;
 
+	shared_ptr<MenuFactory> menuFactory;
+
+	QProcess menuPrinter;
 };
 
 TEST_F(TestNetworkPrompt, ActivatesWithExistingConnection) {
@@ -80,7 +87,7 @@ TEST_F(TestNetworkPrompt, ActivatesWithExistingConnection) {
 			"the ssid", "wpa-psk").waitForFinished();
 
 	NetworkPrompt networkPrompt(dbusTestRunner.sessionConnection(),
-			dbusTestRunner.systemConnection());
+			dbusTestRunner.systemConnection(), menuFactory);
 	networkPrompt.check();
 
 	OrgFreedesktopDBusMockInterface &networkManagerMock(
@@ -89,12 +96,18 @@ TEST_F(TestNetworkPrompt, ActivatesWithExistingConnection) {
 	QList<MethodCall> methodCalls(
 			networkManagerMock.GetMethodCalls("ActivateConnection"));
 
-	ASSERT_EQ(1, methodCalls.size());
-	const QVariantList &args(methodCalls.first().args());
-	ASSERT_EQ(3, args.size());
+	QFile expected(EXPECTED_MENU_WITH_EXISTING_CONNECTION);
+	expected.open(QIODevice::ReadOnly);
+	EXPECT_EQ(string(expected.readAll().data()),
+			string(menuPrinter.readAll().data()));
+
+//	ASSERT_EQ(1, methodCalls.size());
+//	const QVariantList &args(methodCalls.first().args());
+//	ASSERT_EQ(3, args.size());
 }
 
 TEST_F(TestNetworkPrompt, ActivatesWithoutExistingConnection) {
+
 	OrgFreedesktopDBusPropertiesInterface properties(NM_DBUS_INTERFACE,
 			NM_DBUS_PATH, dbusTestRunner.systemConnection());
 	properties.Set(NM_DBUS_INTERFACE, "WirelessEnabled", QVariant(true)).waitForFinished();
@@ -104,11 +117,14 @@ TEST_F(TestNetworkPrompt, ActivatesWithoutExistingConnection) {
 			dbusMock.networkManagerInterface());
 	networkManager.AddWiFiDevice("device", "eth1", NM_DEVICE_STATE_DISCONNECTED).waitForFinished();
 	networkManager.AddAccessPoint(
-			"/org/freedesktop/NetworkManager/Devices/device", "ap", "ssid",
-			"11:22:33:44:55:66", 0, 0, 0, 's', 0).waitForFinished();
+			"/org/freedesktop/NetworkManager/Devices/device", "ap1", "ssid1",
+			"11:22:33:44:55:66", 1, 0, 0, 's', 0).waitForFinished();
+	networkManager.AddAccessPoint(
+			"/org/freedesktop/NetworkManager/Devices/device", "ap2", "ssid2",
+			"22:33:44:55:66:77", 0, 0, 0, 's', 0).waitForFinished();
 
 	NetworkPrompt networkPrompt(dbusTestRunner.sessionConnection(),
-			dbusTestRunner.systemConnection());
+			dbusTestRunner.systemConnection(), menuFactory);
 	networkPrompt.check();
 
 	OrgFreedesktopDBusMockInterface &networkManagerMock(
@@ -117,8 +133,14 @@ TEST_F(TestNetworkPrompt, ActivatesWithoutExistingConnection) {
 	QList<MethodCall> methodCalls(
 			networkManagerMock.GetMethodCalls("AddAndActivateConnection"));
 
-	ASSERT_EQ(1, methodCalls.size());
-	ASSERT_EQ(3, methodCalls.first().args().size());
+	QFile expected(EXPECTED_MENU_WITHOUT_EXISTING_CONNECTION);
+	expected.open(QIODevice::ReadOnly);
+	EXPECT_EQ(string(expected.readAll().data()),
+			string(menuPrinter.readAll().data()));
+
+//	ASSERT_EQ(1, methodCalls.size());
+//	ASSERT_EQ(3, methodCalls.first().args().size());
+
 }
 
 } // namespace

@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
 	textdomain(GETTEXT_PACKAGE);
 
 	NetworkPrompt networkPrompt(QDBusConnection::sessionBus(),
-			QDBusConnection::systemBus());
+			QDBusConnection::systemBus(), MenuFactoryPtr(new MenuFactory()));
 
 	return 0;
 }

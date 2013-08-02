@@ -21,6 +21,7 @@
 
 #include <NetworkManagerInterface.h>
 #include <NetworkManagerDeviceInterface.h>
+#include <WiFiMenu.h>
 
 #include <QObject>
 #include <QDBusConnection>
@@ -28,7 +29,8 @@
 class NetworkPrompt: public QObject {
 public:
 	explicit NetworkPrompt(const QDBusConnection &sessionConnection,
-			const QDBusConnection &systemConnection, QObject *parent = 0);
+			const QDBusConnection &systemConnection, MenuFactoryPtr menuFactory,
+			QObject *parent = 0);
 
 	virtual ~NetworkPrompt();
 
@@ -40,6 +42,8 @@ protected:
 	QDBusConnection m_systemConnection;
 
 	OrgFreedesktopNetworkManagerInterface m_networkManager;
+
+	MenuFactoryPtr m_menuFactory;
 
 	QDBusObjectPath activateAccessPoint(const QDBusObjectPath& accessPointPath,
 			const OrgFreedesktopNetworkManagerDeviceInterface& device,
