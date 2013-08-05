@@ -1,0 +1,34 @@
+libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
+ (c++)"QtDBusTest::DBusService::DBusService(QString const&, QDBusConnection::BusType)@Base" 0.1
+ (c++)"QtDBusTest::DBusService::DBusService(QString const&, QDBusConnection::BusType)@Base" 0.1
+ (c++)"QtDBusTest::DBusService::~DBusService()@Base" 0.1
+ (c++)"QtDBusTest::DBusService::~DBusService()@Base" 0.1
+ (c++)"QtDBusTest::DBusService::~DBusService()@Base" 0.1
+ (c++)"QtDBusTest::DBusTestRunner::startServices()@Base" 0.1
+ (c++)"QtDBusTest::DBusTestRunner::registerService(QSharedPointer<QtDBusTest::DBusService>)@Base" 0.1
+ (c++)"QtDBusTest::DBusTestRunner::DBusTestRunner(QString const&, QString const&)@Base" 0.1
+ (c++)"QtDBusTest::DBusTestRunner::DBusTestRunner(QString const&, QString const&)@Base" 0.1
+ (c++)"QtDBusTest::DBusTestRunner::~DBusTestRunner()@Base" 0.1
+ (c++)"QtDBusTest::DBusTestRunner::~DBusTestRunner()@Base" 0.1
+ (c++)"QtDBusTest::DBusTestRunner::~DBusTestRunner()@Base" 0.1
+ (c++)"QtDBusTest::QProcessDBusService::start(QDBusConnection const&)@Base" 0.1
+ (c++)"QtDBusTest::QProcessDBusService::QProcessDBusService(QString const&, QDBusConnection::BusType, QString const&, QStringList const&)@Base" 0.1
+ (c++)"QtDBusTest::QProcessDBusService::QProcessDBusService(QString const&, QDBusConnection::BusType, QString const&, QStringList const&)@Base" 0.1
+ (c++)"QtDBusTest::QProcessDBusService::~QProcessDBusService()@Base" 0.1
+ (c++)"QtDBusTest::QProcessDBusService::~QProcessDBusService()@Base" 0.1
+ (c++)"QtDBusTest::QProcessDBusService::~QProcessDBusService()@Base" 0.1
+ (c++)"QtDBusTest::DBusService::busType() const@Base" 0.1
+ (c++)"QtDBusTest::DBusService::interface() const@Base" 0.1
+ (c++)"QtDBusTest::DBusTestRunner::sessionBus() const@Base" 0.1
+ (c++)"QtDBusTest::DBusTestRunner::systemConnection() const@Base" 0.1
+ (c++)"QtDBusTest::DBusTestRunner::sessionConnection() const@Base" 0.1
+ (c++)"QtDBusTest::DBusTestRunner::systemBus() const@Base" 0.1
+ (c++)"typeinfo for QtDBusTest::DBusService@Base" 0.1
+ (c++)"typeinfo for QtDBusTest::DBusTestRunner@Base" 0.1
+ (c++)"typeinfo for QtDBusTest::QProcessDBusService@Base" 0.1
+ (c++)"typeinfo name for QtDBusTest::DBusService@Base" 0.1
+ (c++)"typeinfo name for QtDBusTest::DBusTestRunner@Base" 0.1
+ (c++)"typeinfo name for QtDBusTest::QProcessDBusService@Base" 0.1
+ (c++)"vtable for QtDBusTest::DBusService@Base" 0.1
+ (c++)"vtable for QtDBusTest::DBusTestRunner@Base" 0.1
+ (c++)"vtable for QtDBusTest::QProcessDBusService@Base" 0.1

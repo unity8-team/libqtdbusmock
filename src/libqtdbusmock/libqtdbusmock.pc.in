@@ -1,0 +1,10 @@
+libdir=@CMAKE_INSTALL_FULL_LIBDIR@
+includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@
+
+Cflags: -I${includedir}/libqtdbusmock-@API_VERSION@
+Requires: Qt5Core
+Libs: -L${libdir} -lqtdbusmock -lqtdbustest
+
+Name: libqtdbusmock
+Description: A library to facilitate mocking DBus services written in Qt/C++
+Version: @ABI_VERSION@
