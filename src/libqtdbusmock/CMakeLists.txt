@@ -69,6 +69,11 @@ qt5_use_modules(
 	Test
 )
 
+target_link_libraries(
+	qtdbusmock
+	${QTDBUSTEST_LIBRARIES}
+)
+
 set_target_properties(
 	qtdbusmock
 	PROPERTIES

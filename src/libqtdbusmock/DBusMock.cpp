@@ -21,11 +21,25 @@
 
 #include <NetworkManager.h>
 
-using namespace QtDBusMock;
 using namespace QtDBusTest;
 
+namespace QtDBusMock {
+
+class DBusMockPrivate {
+public:
+	DBusMockPrivate(DBusTestRunner &testRunner) :
+			m_testRunner(testRunner) {
+	}
+
+	QtDBusTest::DBusTestRunner &m_testRunner;
+
+	QScopedPointer<NetworkManagerMockInterface> m_networkManagerMock;
+
+	QMap<QString, QSharedPointer<OrgFreedesktopDBusMockInterface> > m_mockInterfaces;
+};
+
 DBusMock::DBusMock(DBusTestRunner &testRunner) :
-		m_testRunner(testRunner) {
+		d(new DBusMockPrivate(testRunner)) {
 }
 
 DBusMock::~DBusMock() {
@@ -38,7 +52,7 @@ void DBusMock::registerMetaTypes() {
 }
 
 void DBusMock::registerNetworkManager() {
-	m_testRunner.registerService(
+	d->m_testRunner.registerService(
 			DBusServicePtr(
 					new QProcessDBusService(NM_DBUS_INTERFACE,
 							QDBusConnection::SystemBus, "python3",
@@ -53,38 +67,38 @@ void DBusMock::registerCustomMock(const QString &name, const QString &path,
 		args << "-s";
 	}
 	args << "-m" << "dbusmock" << name << path << interface;
-	m_testRunner.registerService(
+	d->m_testRunner.registerService(
 			DBusServicePtr(
 					new QProcessDBusService(interface, busType, "python3",
 							args)));
 }
 
 NetworkManagerMockInterface & DBusMock::networkManagerInterface() {
-	if (m_networkManagerMock.isNull()) {
-		m_networkManagerMock.reset(
+	if (d->m_networkManagerMock.isNull()) {
+		d->m_networkManagerMock.reset(
 				new NetworkManagerMockInterface(NM_DBUS_INTERFACE, NM_DBUS_PATH,
-						m_testRunner.systemConnection()));
+						d->m_testRunner.systemConnection()));
 	}
-	return *m_networkManagerMock;
+	return *d->m_networkManagerMock;
 }
 
 OrgFreedesktopDBusMockInterface & DBusMock::mockInterface(const QString &name,
 		const QString &path, const QString &interface,
 		QDBusConnection::BusType busType) {
-	auto it(m_mockInterfaces.find(name));
-	if (it == m_mockInterfaces.end()) {
+	auto it(d->m_mockInterfaces.find(name));
+	if (it == d->m_mockInterfaces.end()) {
 		switch (busType) {
 		case QDBusConnection::SystemBus:
-			it = m_mockInterfaces.insert(name,
+			it = d->m_mockInterfaces.insert(name,
 					QSharedPointer<OrgFreedesktopDBusMockInterface>(
 							new OrgFreedesktopDBusMockInterface(interface, path,
-									m_testRunner.systemConnection())));
+									d->m_testRunner.systemConnection())));
 			break;
 		case QDBusConnection::SessionBus:
-			it = m_mockInterfaces.insert(name,
+			it = d->m_mockInterfaces.insert(name,
 					QSharedPointer<OrgFreedesktopDBusMockInterface>(
 							new OrgFreedesktopDBusMockInterface(interface, path,
-									m_testRunner.sessionConnection())));
+									d->m_testRunner.sessionConnection())));
 			break;
 		case QDBusConnection::ActivationBus:
 			qWarning() << "Unknown bus type";
@@ -94,3 +108,4 @@ OrgFreedesktopDBusMockInterface & DBusMock::mockInterface(const QString &name,
 	return **it;
 }
 
+}

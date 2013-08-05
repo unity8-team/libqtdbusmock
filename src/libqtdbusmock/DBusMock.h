@@ -26,6 +26,8 @@
 
 namespace QtDBusMock {
 
+class DBusMockPrivate;
+
 class Q_DECL_EXPORT DBusMock {
 public:
 	DBusMock(QtDBusTest::DBusTestRunner &testRunner);
@@ -46,12 +48,8 @@ public:
 			const QString &path, const QString &interface,
 			QDBusConnection::BusType busType);
 
-protected:
-	QtDBusTest::DBusTestRunner &m_testRunner;
-
-	QScopedPointer<NetworkManagerMockInterface> m_networkManagerMock;
-
-	QMap<QString, QSharedPointer<OrgFreedesktopDBusMockInterface> > m_mockInterfaces;
+private:
+	QSharedPointer<DBusMockPrivate> d;
 };
 
 }
