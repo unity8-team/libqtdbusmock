@@ -21,7 +21,6 @@
 #include <QCoreApplication>
 #include <gtest/gtest.h>
 
-#include <InitGlib.h>
 #include <libqtdbusmock/DBusMock.h>
 
 using namespace QtDBusMock;
@@ -35,7 +34,6 @@ int main(int argc, char **argv) {
 	textdomain(GETTEXT_PACKAGE);
 
 	QCoreApplication application(argc, argv);
-	InitGlib::init();
 
 	DBusMock::registerMetaTypes();
 

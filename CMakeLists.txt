@@ -1,10 +1,10 @@
-project(indicator-network-prompt CXX)
+project(libqtdbusmock CXX)
 cmake_minimum_required(VERSION 2.8.9)
 
 set(API_VERSION 1)
 set(ABI_VERSION 1)
 
-set(GETTEXT_PACKAGE indicator-network-prompt)
+set(GETTEXT_PACKAGE libqtdbusmock)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" "${CMAKE_MODULE_PATH}")
 
@@ -18,18 +18,6 @@ include_directories(${Qt5DBus_INCLUDE_DIRS})
 
 find_package(Qt5Test REQUIRED)
 include_directories(${Qt5Test_INCLUDE_DIRS})
-
-pkg_check_modules(NM REQUIRED libnm-util REQUIRED)
-include_directories(${NM_INCLUDE_DIRS})
-
-pkg_check_modules(GLIBMM REQUIRED glibmm-2.4 REQUIRED)
-include_directories(${GLIBMM_INCLUDE_DIRS})
-
-pkg_check_modules(GIOMM REQUIRED giomm-2.4 REQUIRED)
-include_directories(${GIOMM_INCLUDE_DIRS})
-
-pkg_check_modules(QMENUMODEL REQUIRED qmenumodel REQUIRED)
-include_directories(${QMENUMODEL_INCLUDE_DIRS})
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -74,12 +62,6 @@ configure_file(
 	"${SOURCE_BINARY_DIR}/config.h"
 )
 
-
-add_subdirectory("libqtdbustest")
-include_directories(${QTDBUSTEST_INCLUDE_DIRS})
-
-add_subdirectory("libqtdbusmock")
-include_directories(${QTDBUSMOCK_INCLUDE_DIRS})
 
 #add_subdirectory("po")
 add_subdirectory("src")

@@ -9,7 +9,7 @@ BUILDDIR="$SOURCEDIR/../$BRANCHNAME-build"
 
 usage() {
     echo "usage: $0 [OPTIONS] [BUILD_TYPE]\n" >&2
-    echo "Script to build indicator-network-prompt. If BUILD_TYPE is not specified, it defaults to \"Debug\".\n" >&2
+    echo "Script to build libqtdbusmock. If BUILD_TYPE is not specified, it defaults to \"Debug\".\n" >&2
     echo "OPTIONS:" >&2
     echo " -e, --eclipse Generate Eclipse projects" >&2
     echo " -c, --clean Clean the build tree before building" >&2
