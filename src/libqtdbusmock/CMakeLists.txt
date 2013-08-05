@@ -27,6 +27,7 @@ set_source_files_properties(
 	"${DATA_DIR}/org.freedesktop.DBus.Properties.xml"
 	PROPERTIES
 	NO_NAMESPACE YES
+	INCLUDE "libqtdbusmock/ExportInterfaces.h"
 )
 
 set_source_files_properties(
@@ -34,6 +35,7 @@ set_source_files_properties(
 	PROPERTIES
 	NO_NAMESPACE YES
 	CLASSNAME NetworkManagerMockInterface
+	INCLUDE "libqtdbusmock/ExportInterfaces.h"
 )
 
 qt5_add_dbus_interface(

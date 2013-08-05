@@ -1,34 +1,93 @@
 libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
- (c++)"QtDBusTest::DBusService::DBusService(QString const&, QDBusConnection::BusType)@Base" 0.1
- (c++)"QtDBusTest::DBusService::DBusService(QString const&, QDBusConnection::BusType)@Base" 0.1
- (c++)"QtDBusTest::DBusService::~DBusService()@Base" 0.1
- (c++)"QtDBusTest::DBusService::~DBusService()@Base" 0.1
- (c++)"QtDBusTest::DBusService::~DBusService()@Base" 0.1
- (c++)"QtDBusTest::DBusTestRunner::startServices()@Base" 0.1
- (c++)"QtDBusTest::DBusTestRunner::registerService(QSharedPointer<QtDBusTest::DBusService>)@Base" 0.1
- (c++)"QtDBusTest::DBusTestRunner::DBusTestRunner(QString const&, QString const&)@Base" 0.1
- (c++)"QtDBusTest::DBusTestRunner::DBusTestRunner(QString const&, QString const&)@Base" 0.1
- (c++)"QtDBusTest::DBusTestRunner::~DBusTestRunner()@Base" 0.1
- (c++)"QtDBusTest::DBusTestRunner::~DBusTestRunner()@Base" 0.1
- (c++)"QtDBusTest::DBusTestRunner::~DBusTestRunner()@Base" 0.1
- (c++)"QtDBusTest::QProcessDBusService::start(QDBusConnection const&)@Base" 0.1
- (c++)"QtDBusTest::QProcessDBusService::QProcessDBusService(QString const&, QDBusConnection::BusType, QString const&, QStringList const&)@Base" 0.1
- (c++)"QtDBusTest::QProcessDBusService::QProcessDBusService(QString const&, QDBusConnection::BusType, QString const&, QStringList const&)@Base" 0.1
- (c++)"QtDBusTest::QProcessDBusService::~QProcessDBusService()@Base" 0.1
- (c++)"QtDBusTest::QProcessDBusService::~QProcessDBusService()@Base" 0.1
- (c++)"QtDBusTest::QProcessDBusService::~QProcessDBusService()@Base" 0.1
- (c++)"QtDBusTest::DBusService::busType() const@Base" 0.1
- (c++)"QtDBusTest::DBusService::interface() const@Base" 0.1
- (c++)"QtDBusTest::DBusTestRunner::sessionBus() const@Base" 0.1
- (c++)"QtDBusTest::DBusTestRunner::systemConnection() const@Base" 0.1
- (c++)"QtDBusTest::DBusTestRunner::sessionConnection() const@Base" 0.1
- (c++)"QtDBusTest::DBusTestRunner::systemBus() const@Base" 0.1
- (c++)"typeinfo for QtDBusTest::DBusService@Base" 0.1
- (c++)"typeinfo for QtDBusTest::DBusTestRunner@Base" 0.1
- (c++)"typeinfo for QtDBusTest::QProcessDBusService@Base" 0.1
- (c++)"typeinfo name for QtDBusTest::DBusService@Base" 0.1
- (c++)"typeinfo name for QtDBusTest::DBusTestRunner@Base" 0.1
- (c++)"typeinfo name for QtDBusTest::QProcessDBusService@Base" 0.1
- (c++)"vtable for QtDBusTest::DBusService@Base" 0.1
- (c++)"vtable for QtDBusTest::DBusTestRunner@Base" 0.1
- (c++)"vtable for QtDBusTest::QProcessDBusService@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::setTimestamp(unsigned long long)@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::registerMetaType()@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::setArgs(QList<QVariant> const&)@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::MethodCall(QtDBusMock::MethodCall const&)@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::MethodCall()@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::MethodCall(QtDBusMock::MethodCall const&)@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::MethodCall()@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::~MethodCall()@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::~MethodCall()@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::operator=(QtDBusMock::MethodCall const&)@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::setTimestamp(unsigned long long)@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::setMethodName(QString const&)@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::registerMetaType()@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::setArgs(QList<QVariant> const&)@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::NamedMethodCall(QtDBusMock::NamedMethodCall const&)@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::NamedMethodCall()@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::NamedMethodCall(QtDBusMock::NamedMethodCall const&)@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::NamedMethodCall()@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::~NamedMethodCall()@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::~NamedMethodCall()@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::operator=(QtDBusMock::NamedMethodCall const&)@Base" 0.1
+ (c++)"QtDBusMock::Method::registerMetaType()@Base" 0.1
+ (c++)"QtDBusMock::Method::setCode(QString const&)@Base" 0.1
+ (c++)"QtDBusMock::Method::setName(QString const&)@Base" 0.1
+ (c++)"QtDBusMock::Method::setInSig(QString const&)@Base" 0.1
+ (c++)"QtDBusMock::Method::setOutSig(QString const&)@Base" 0.1
+ (c++)"QtDBusMock::Method::Method(QtDBusMock::Method const&)@Base" 0.1
+ (c++)"QtDBusMock::Method::Method()@Base" 0.1
+ (c++)"QtDBusMock::Method::Method(QtDBusMock::Method const&)@Base" 0.1
+ (c++)"QtDBusMock::Method::Method()@Base" 0.1
+ (c++)"QtDBusMock::Method::~Method()@Base" 0.1
+ (c++)"QtDBusMock::Method::~Method()@Base" 0.1
+ (c++)"QtDBusMock::Method::operator=(QtDBusMock::Method const&)@Base" 0.1
+ (c++)"QtDBusMock::DBusMock::mockInterface(QString const&, QString const&, QString const&, QDBusConnection::BusType)@Base" 0.1
+ (c++)"QtDBusMock::DBusMock::registerMetaTypes()@Base" 0.1
+ (c++)"QtDBusMock::DBusMock::registerCustomMock(QString const&, QString const&, QString const&, QDBusConnection::BusType)@Base" 0.1
+ (c++)"QtDBusMock::DBusMock::registerNetworkManager()@Base" 0.1
+ (c++)"QtDBusMock::DBusMock::networkManagerInterface()@Base" 0.1
+ (c++)"QtDBusMock::DBusMock::DBusMock(QtDBusTest::DBusTestRunner&)@Base" 0.1
+ (c++)"QtDBusMock::DBusMock::DBusMock(QtDBusTest::DBusTestRunner&)@Base" 0.1
+ (c++)"QtDBusMock::DBusMock::~DBusMock()@Base" 0.1
+ (c++)"QtDBusMock::DBusMock::~DBusMock()@Base" 0.1
+ (c++)"QtDBusMock::DBusMock::~DBusMock()@Base" 0.1
+ (c++)"NetworkManagerMockInterface::qt_metacall(QMetaObject::Call, int, void**)@Base" 0.1
+ (c++)"NetworkManagerMockInterface::qt_metacast(char const*)@Base" 0.1
+ (c++)"NetworkManagerMockInterface::staticMetaObject@Base" 0.1
+ (c++)"NetworkManagerMockInterface::NetworkManagerMockInterface(QString const&, QString const&, QDBusConnection const&, QObject*)@Base" 0.1
+ (c++)"NetworkManagerMockInterface::NetworkManagerMockInterface(QString const&, QString const&, QDBusConnection const&, QObject*)@Base" 0.1
+ (c++)"NetworkManagerMockInterface::~NetworkManagerMockInterface()@Base" 0.1
+ (c++)"NetworkManagerMockInterface::~NetworkManagerMockInterface()@Base" 0.1
+ (c++)"NetworkManagerMockInterface::~NetworkManagerMockInterface()@Base" 0.1
+ (c++)"OrgFreedesktopDBusMockInterface::qt_metacall(QMetaObject::Call, int, void**)@Base" 0.1
+ (c++)"OrgFreedesktopDBusMockInterface::qt_metacast(char const*)@Base" 0.1
+ (c++)"OrgFreedesktopDBusMockInterface::MethodCalled(QString const&, QList<QVariant> const&)@Base" 0.1
+ (c++)"OrgFreedesktopDBusMockInterface::staticMetaObject@Base" 0.1
+ (c++)"OrgFreedesktopDBusMockInterface::OrgFreedesktopDBusMockInterface(QString const&, QString const&, QDBusConnection const&, QObject*)@Base" 0.1
+ (c++)"OrgFreedesktopDBusMockInterface::OrgFreedesktopDBusMockInterface(QString const&, QString const&, QDBusConnection const&, QObject*)@Base" 0.1
+ (c++)"OrgFreedesktopDBusMockInterface::~OrgFreedesktopDBusMockInterface()@Base" 0.1
+ (c++)"OrgFreedesktopDBusMockInterface::~OrgFreedesktopDBusMockInterface()@Base" 0.1
+ (c++)"OrgFreedesktopDBusMockInterface::~OrgFreedesktopDBusMockInterface()@Base" 0.1
+ (c++)"OrgFreedesktopDBusPropertiesInterface::qt_metacall(QMetaObject::Call, int, void**)@Base" 0.1
+ (c++)"OrgFreedesktopDBusPropertiesInterface::qt_metacast(char const*)@Base" 0.1
+ (c++)"OrgFreedesktopDBusPropertiesInterface::staticMetaObject@Base" 0.1
+ (c++)"OrgFreedesktopDBusPropertiesInterface::OrgFreedesktopDBusPropertiesInterface(QString const&, QString const&, QDBusConnection const&, QObject*)@Base" 0.1
+ (c++)"OrgFreedesktopDBusPropertiesInterface::OrgFreedesktopDBusPropertiesInterface(QString const&, QString const&, QDBusConnection const&, QObject*)@Base" 0.1
+ (c++)"OrgFreedesktopDBusPropertiesInterface::~OrgFreedesktopDBusPropertiesInterface()@Base" 0.1
+ (c++)"OrgFreedesktopDBusPropertiesInterface::~OrgFreedesktopDBusPropertiesInterface()@Base" 0.1
+ (c++)"OrgFreedesktopDBusPropertiesInterface::~OrgFreedesktopDBusPropertiesInterface()@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::args() const@Base" 0.1
+ (c++)"QtDBusMock::MethodCall::timestamp() const@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::methodName() const@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::args() const@Base" 0.1
+ (c++)"QtDBusMock::NamedMethodCall::timestamp() const@Base" 0.1
+ (c++)"QtDBusMock::Method::code() const@Base" 0.1
+ (c++)"QtDBusMock::Method::name() const@Base" 0.1
+ (c++)"QtDBusMock::Method::inSig() const@Base" 0.1
+ (c++)"QtDBusMock::Method::outSig() const@Base" 0.1
+ (c++)"NetworkManagerMockInterface::metaObject() const@Base" 0.1
+ (c++)"OrgFreedesktopDBusMockInterface::metaObject() const@Base" 0.1
+ (c++)"OrgFreedesktopDBusPropertiesInterface::metaObject() const@Base" 0.1
+ (c++)"typeinfo for NetworkManagerMockInterface@Base" 0.1
+ (c++)"typeinfo for OrgFreedesktopDBusMockInterface@Base" 0.1
+ (c++)"typeinfo for OrgFreedesktopDBusPropertiesInterface@Base" 0.1
+ (c++)"typeinfo for QtDBusMock::DBusMock@Base" 0.1
+ (c++)"typeinfo name for NetworkManagerMockInterface@Base" 0.1
+ (c++)"typeinfo name for OrgFreedesktopDBusMockInterface@Base" 0.1
+ (c++)"typeinfo name for OrgFreedesktopDBusPropertiesInterface@Base" 0.1
+ (c++)"typeinfo name for QtDBusMock::DBusMock@Base" 0.1
+ (c++)"vtable for NetworkManagerMockInterface@Base" 0.1
+ (c++)"vtable for OrgFreedesktopDBusMockInterface@Base" 0.1
+ (c++)"vtable for OrgFreedesktopDBusPropertiesInterface@Base" 0.1
+ (c++)"vtable for QtDBusMock::DBusMock@Base" 0.1
