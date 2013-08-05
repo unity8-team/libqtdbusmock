@@ -91,3 +91,9 @@ libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
  (c++)"vtable for OrgFreedesktopDBusMockInterface@Base" 0.1
  (c++)"vtable for OrgFreedesktopDBusPropertiesInterface@Base" 0.1
  (c++)"vtable for QtDBusMock::DBusMock@Base" 0.1
+ (c++)"operator<<(QDBusArgument&, QtDBusMock::MethodCall const&)@Base" 0.1
+ (c++)"operator<<(QDBusArgument&, QtDBusMock::NamedMethodCall const&)@Base" 0.1
+ (c++)"operator<<(QDBusArgument&, QtDBusMock::Method const&)@Base" 0.1
+ (c++)"operator>>(QDBusArgument const&, QtDBusMock::MethodCall&)@Base" 0.1
+ (c++)"operator>>(QDBusArgument const&, QtDBusMock::NamedMethodCall&)@Base" 0.1
+ (c++)"operator>>(QDBusArgument const&, QtDBusMock::Method&)@Base" 0.1

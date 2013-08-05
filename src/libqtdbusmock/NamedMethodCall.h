@@ -57,9 +57,11 @@ protected:
 
 }
 
+Q_DECL_EXPORT
 QDBusArgument &operator<<(QDBusArgument &argument,
 		const QtDBusMock::NamedMethodCall &methodCalls);
 
+Q_DECL_EXPORT
 const QDBusArgument &operator>>(const QDBusArgument &argument,
 		QtDBusMock::NamedMethodCall &methodCalls);
 
