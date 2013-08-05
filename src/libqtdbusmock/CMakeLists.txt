@@ -14,6 +14,9 @@ set(
 	Method.h
 	MethodCall.h
 	NamedMethodCall.h
+	"${CMAKE_CURRENT_BINARY_DIR}/MockInterface.h"
+	"${CMAKE_CURRENT_BINARY_DIR}/PropertiesInterface.h"
+	"${CMAKE_CURRENT_BINARY_DIR}/NetworkManagerMockInterface.h"
 )
 
 set_source_files_properties(
