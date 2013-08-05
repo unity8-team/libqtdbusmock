@@ -11,8 +11,10 @@ set(
 	QTDBUSMOCK_PUBLIC_HEADERS
 	"${CMAKE_CURRENT_BINARY_DIR}/config.h"
 	DBusMock.h
+	ExportInterfaces.h
 	Method.h
 	MethodCall.h
+	MockInterfaceClasses.h
 	NamedMethodCall.h
 	"${CMAKE_CURRENT_BINARY_DIR}/MockInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/PropertiesInterface.h"
