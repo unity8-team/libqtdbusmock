@@ -28,8 +28,7 @@ qt5_use_modules(
 
 target_link_libraries(
 	unit-tests
-#	indicator-network-prompt
-	${QTDBUSMOCK_LIBRARIES}
+	qtdbusmock
 	${QTDBUSTEST_LIBRARIES}
 	${GTEST_LIBRARIES}
 	${GMOCK_LIBRARIES}

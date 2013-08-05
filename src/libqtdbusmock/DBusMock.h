@@ -26,12 +26,13 @@
 
 namespace QtDBusMock {
 
-class DBusMock {
+class Q_DECL_EXPORT DBusMock {
 public:
 	DBusMock(QtDBusTest::DBusTestRunner &testRunner);
 
 	virtual ~DBusMock();
 
+	Q_DECL_EXPORT
 	static void registerMetaTypes();
 
 	virtual void registerNetworkManager();

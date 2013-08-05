@@ -1,27 +1,40 @@
-Source: indicator-network-prompt
-Section: gnome
+Source: libqtdbusmock
+Section: devel
 Priority: optional
-Maintainer: Pete Woods <pete.woods@canonical.com>
+Maintainer: Ubuntu Developers <ubunu-devel.discuss@lists.ubuntu.com>
 Build-Depends: debhelper (>= 9),
                cmake,
                pkg-config,
                google-mock (>= 1.6.0+svn437),
                qtbase5-dev,
-               libnm-util-dev,
-               network-manager-dev,
                valgrind,
-               python3-dbusmock,
                gettext,
+               libqtdbustest1-dev,
+               libnm-util-dev,
 Standards-Version: 3.9.4
-Homepage: https://launchpad.net/indicator-network-prompt
-# If you aren't a member of ~submarine but need to upload packaging changes,
-# just go ahead. ~submarine will notice and sync up the code again.
-Vcs-Bzr: https://code.launchpad.net/~unity-team/indicator-network-prompt/trunk
+Homepage: https://launchpad.net/libqtdbustest
+Vcs-Bzr: https://code.launchpad.net/~unity-team/libqtdbustest/trunk
  
-Package: indicator-network-prompt
+Package: libqtdbusmock1
+Section: libs
 Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends},
 Depends:  ${misc:Depends},
-          ${shlibs:Depends}
-Description: SoundCloud scope for Unity
- This package contains the "soundcloud" scope which allows Unity
- to search for SoundCloud content.
+          ${shlibs:Depends},
+          python3-dbusmock,
+Description: Library for mocking DBus interations using Qt
+ A simple library for mocking DBus services with a Qt API
+ .
+ This package contains the shared libraries.
+
+Package: libqtdbusmock1-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends:  ${misc:Depends},
+          libqtdbusmock1 (= ${binary:Version}),
+Description: Library for mocking DBus interations using Qt
+ A simple library for mocking DBus services with a Qt API
+ .
+ This package contains files that are needed to build.

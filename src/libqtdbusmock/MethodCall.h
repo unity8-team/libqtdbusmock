@@ -23,7 +23,7 @@
 
 namespace QtDBusMock {
 
-class MethodCall {
+class Q_DECL_EXPORT MethodCall {
 public:
 	explicit MethodCall();
 

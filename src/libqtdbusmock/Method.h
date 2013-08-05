@@ -23,7 +23,7 @@
 
 namespace QtDBusMock {
 
-class Method {
+class Q_DECL_EXPORT Method {
 public:
 	explicit Method();
 

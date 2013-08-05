@@ -19,6 +19,12 @@ include_directories(${Qt5DBus_INCLUDE_DIRS})
 find_package(Qt5Test REQUIRED)
 include_directories(${Qt5Test_INCLUDE_DIRS})
 
+pkg_check_modules(QTDBUSTEST REQUIRED libqtdbustest-1 REQUIRED)
+include_directories(${QTDBUSTEST_INCLUDE_DIRS})
+
+pkg_check_modules(NM REQUIRED libnm-util REQUIRED)
+include_directories(${NM_INCLUDE_DIRS})
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -58,8 +64,8 @@ add_definitions(
 #endif()
 
 configure_file(
-	"${SOURCE_DIR}/config.h.in"
-	"${SOURCE_BINARY_DIR}/config.h"
+	"${SOURCE_DIR}/libqtdbusmock/config.h.in"
+	"${SOURCE_BINARY_DIR}/libqtdbusmock/config.h"
 )
 
 
