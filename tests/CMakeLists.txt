@@ -12,6 +12,7 @@ include_directories(${GTEST_INCLUDE_DIRS})
 set(
 	UNIT_TESTS_SRC
 	main.cpp
+	libqtdbusmock/TestDBusMock.cpp
 )
 
 add_executable(
