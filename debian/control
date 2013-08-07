@@ -2,27 +2,29 @@ Source: libqtdbusmock
 Section: devel
 Priority: optional
 Maintainer: Ubuntu Developers <ubunu-devel.discuss@lists.ubuntu.com>
-Build-Depends: debhelper (>= 9),
-               cmake,
-               pkg-config,
-               google-mock (>= 1.6.0+svn437),
-               qtbase5-dev,
-               valgrind,
+Build-Depends: cmake,
+               debhelper (>= 9),
                gettext,
+               google-mock (>= 1.6.0+svn437),
                libqtdbustest1-dev,
                network-manager-dev,
+               pkg-config,
+               qtbase5-dev,
+               valgrind,
 Standards-Version: 3.9.4
 Homepage: https://launchpad.net/libqtdbustest
+# If you aren't a member of ~unity-team but need to upload packaging changes,
+# just go ahead.  ~unity-team will notice and sync up the code again.
 Vcs-Bzr: https://code.launchpad.net/~unity-team/libqtdbustest/trunk
- 
+
 Package: libqtdbusmock1
 Section: libs
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends},
-Depends:  ${misc:Depends},
-          ${shlibs:Depends},
-          python3-dbusmock,
+Depends: python3-dbusmock,
+         ${misc:Depends},
+         ${shlibs:Depends},
 Description: Library for mocking DBus interations using Qt
  A simple library for mocking DBus services with a Qt API
  .
@@ -32,8 +34,8 @@ Package: libqtdbusmock1-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends:  ${misc:Depends},
-          libqtdbusmock1 (= ${binary:Version}),
+Depends: libqtdbusmock1 (= ${binary:Version}),
+         ${misc:Depends},
 Description: Library for mocking DBus interations using Qt
  A simple library for mocking DBus services with a Qt API
  .
