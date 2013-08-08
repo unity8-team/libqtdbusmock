@@ -35,7 +35,7 @@ include_directories(${SOURCE_DIR})
 include_directories(${SOURCE_BINARY_DIR})
 
 include(GNUInstallDirs)
-#include(Coverage)
+include(Coverage)
 
 # Workaround for libexecdir on debian
 if (EXISTS "/etc/debian_version") 
