@@ -1,5 +1,33 @@
-libqtdbusmock (0.1-0ubuntu1) UNRELEASED; urgency=low
+libqtdbusmock (0.1+13.10.20130809-0ubuntu1) saucy; urgency=low
 
+  [ Pete Woods ]
   * Initial release
+  * Initial commit
+  * Pull out the dbus initialisationd and mocking into separate
+    libraries
+  * Support separate mocked session and system buses
+  * Support the whole dbusmock interface
+  * Fix support for mocking session services
+  * Add code to construct gmenumodels
+  * Create a gmenumodel and confirm it is correct by reading it back in
+    again
+  * Remove everything that's not related to libqtdbusmock
+  * Missing files
+  * Export the generated interface symbols
+  * Use PIMPL and correctly link against libqtdbustest
+  * Install generated headers
+  * Add helper headers to install
+  * Export stream operators
+  * Fix network manager dependency
+  * First test
+  * Fix tests.
+  * Enable coverage
 
- -- Pete Woods <pete.woods@canonical.com>  Fri, 12 Jul 2013 16:43:17 +0100
+  [ Robert Bruce Park ]
+  * Packaging fixes necessary for daily release.
+  * Copyright cleanup.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 22
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 09 Aug 2013 02:02:08 +0000
