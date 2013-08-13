@@ -85,19 +85,20 @@ NetworkManagerMockInterface & DBusMock::networkManagerInterface() {
 OrgFreedesktopDBusMockInterface & DBusMock::mockInterface(const QString &name,
 		const QString &path, const QString &interface,
 		QDBusConnection::BusType busType) {
+	Q_UNUSED(interface);
 	auto it(d->m_mockInterfaces.find(name));
 	if (it == d->m_mockInterfaces.end()) {
 		switch (busType) {
 		case QDBusConnection::SystemBus:
 			it = d->m_mockInterfaces.insert(name,
 					QSharedPointer<OrgFreedesktopDBusMockInterface>(
-							new OrgFreedesktopDBusMockInterface(interface, path,
+							new OrgFreedesktopDBusMockInterface(name, path,
 									d->m_testRunner.systemConnection())));
 			break;
 		case QDBusConnection::SessionBus:
 			it = d->m_mockInterfaces.insert(name,
 					QSharedPointer<OrgFreedesktopDBusMockInterface>(
-							new OrgFreedesktopDBusMockInterface(interface, path,
+							new OrgFreedesktopDBusMockInterface(name, path,
 									d->m_testRunner.sessionConnection())));
 			break;
 		case QDBusConnection::ActivationBus:
