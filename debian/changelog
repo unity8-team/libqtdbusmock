@@ -1,3 +1,13 @@
+libqtdbusmock (0.1+13.10.20130814-0ubuntu1) saucy; urgency=low
+
+  [ Pete Woods ]
+  * More tests.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 24
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 14 Aug 2013 02:04:05 +0000
+
 libqtdbusmock (0.1+13.10.20130809-0ubuntu1) saucy; urgency=low
 
   [ Pete Woods ]
