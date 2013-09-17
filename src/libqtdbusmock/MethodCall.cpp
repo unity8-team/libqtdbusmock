@@ -71,6 +71,32 @@ QDBusArgument &operator<<(QDBusArgument &argument,
 	return argument;
 }
 
+static void transform(QVariantMap &map);
+
+static void transform(QVariant &variant) {
+	if (variant.canConvert<QDBusArgument>()) {
+		QDBusArgument value(variant.value<QDBusArgument>());
+		if (value.currentType() == QDBusArgument::MapType) {
+			QVariantMap map;
+			value >> map;
+			transform(map);
+			variant = map;
+		}
+	}
+}
+
+static void transform(QVariantMap &map) {
+	for (auto it(map.begin()); it != map.end(); ++it) {
+		transform(*it);
+	}
+}
+
+static void transform(QVariantList &list) {
+	for (auto it(list.begin()); it != list.end(); ++it) {
+		transform(*it);
+	}
+}
+
 const QDBusArgument &operator>>(const QDBusArgument &argument,
 		MethodCall &methodCall) {
 
@@ -80,6 +106,8 @@ const QDBusArgument &operator>>(const QDBusArgument &argument,
 	argument.beginStructure();
 	argument >> timestamp >> args;
 	argument.endStructure();
+
+	transform(args);
 
 	methodCall.setTimestamp(timestamp);
 	methodCall.setArgs(args);
