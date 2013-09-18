@@ -1,3 +1,13 @@
+libqtdbusmock (0.1+13.10.20130918-0ubuntu1) saucy; urgency=low
+
+  [ Pete Woods ]
+  * Correctly handle variant maps inside method argument lists.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 26
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 18 Sep 2013 06:03:21 +0000
+
 libqtdbusmock (0.1+13.10.20130814-0ubuntu1) saucy; urgency=low
 
   [ Pete Woods ]
