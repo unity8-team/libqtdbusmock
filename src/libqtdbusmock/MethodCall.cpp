@@ -71,17 +71,49 @@ QDBusArgument &operator<<(QDBusArgument &argument,
 	return argument;
 }
 
+static void transform(QVariantList &list);
+
 static void transform(QVariantMap &map);
 
-static void transform(QVariant &variant) {
-	if (variant.canConvert<QDBusArgument>()) {
-		QDBusArgument value(variant.value<QDBusArgument>());
-		if (value.currentType() == QDBusArgument::MapType) {
-			QVariantMap map;
-			value >> map;
-			transform(map);
-			variant = map;
+static QVariant transform(const QDBusArgument & value) {
+	switch (value.currentType()) {
+	case QDBusArgument::ArrayType: {
+		value.beginArray();
+		QVariantList list = transform(value).toList();
+		value.endArray();
+		return list;
+	}
+	case QDBusArgument::MapType: {
+		QVariantMap map;
+		value >> map;
+		transform(map);
+		return map;
+	}
+	case QDBusArgument::StructureType: {
+		value.beginStructure();
+		QVariantList list;
+		while (!value.atEnd()) {
+			list << value.asVariant();
 		}
+		value.endStructure();
+		return list;
+		break;
+	}
+	default:
+		qDebug() << "Unhandled type" << value.currentType()
+				<< value.currentSignature();
+	}
+	return QVariant();
+}
+
+static void transform(QVariant &variant) {
+	if (variant.canConvert<QVariantList>()) {
+		QVariantList list = variant.toList();
+		transform(list);
+		variant = list;
+	} else if (variant.canConvert<QDBusArgument>()) {
+		QDBusArgument value(variant.value<QDBusArgument>());
+		variant = transform(value);
 	}
 }
 
