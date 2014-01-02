@@ -26,7 +26,7 @@ find_package_handle_standard_args(
 )
 
 function(add_valgrind_test NAME EXECUTABLE)
-	if(ENABLE_MEMCHECK_OPTION)
+	if(ENABLE_MEMCHECK_OPTION AND VALGRIND_PROGRAM)
 		add_test(${NAME} ${VALGRIND_PROGRAM} ${VALGRIND_PROGRAM_OPTIONS} "${CMAKE_CURRENT_BINARY_DIR}/${EXECUTABLE}")
 	else()
 		add_test(${NAME} ${EXECUTABLE})
