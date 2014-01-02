@@ -11,7 +11,7 @@ Build-Depends: cmake,
                pkg-config,
                python3-dbusmock,
                qtbase5-dev,
-               valgrind,
+               valgrind [!arm64 !ppc64el],
 Standards-Version: 3.9.4
 Homepage: https://launchpad.net/libqtdbustest
 # If you aren't a member of ~unity-team but need to upload packaging changes,
