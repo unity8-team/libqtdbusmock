@@ -3,21 +3,11 @@
 
 export DPKG_GENSYMBOLS_CHECK_LEVEL=4
 
-DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
-ifeq (,$(filter $(DEB_HOST_ARCH), arm64 ppc64el i386))
-  with_valgrind = yes
-endif
-
 %:
 	dh $@ --parallel --fail-missing
 
 override_dh_auto_configure:
 	dh_auto_configure -- -DENABLE_MEMCHECK_OPTION=YES
-
-ifneq ($(with_valgrind),yes)
-override_dh_auto_test:
-	: # testsuite requires valgrind, not yet available on $(DEB_HOST_ARCH)
-endif
 
 override_dh_makeshlibs:
 	dh_makeshlibs -V
