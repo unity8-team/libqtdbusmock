@@ -1,3 +1,16 @@
+libqtdbusmock (0.2+14.04.20131128.1-0ubuntu3) trusty; urgency=medium
+
+  * Disable the testsuite on i386 for now. See #1262638 and #1263926.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 24 Dec 2013 13:12:50 +0100
+
+libqtdbusmock (0.2+14.04.20131128.1-0ubuntu2) trusty; urgency=medium
+
+  * Don't build-depend on valgrind on architecture without valgrind.
+  * Don't run the testsuite when valgrind is not available.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 24 Dec 2013 13:09:40 +0100
+
 libqtdbusmock (0.2+14.04.20131128.1-0ubuntu1) trusty; urgency=low
 
   [ Pete Woods ]
