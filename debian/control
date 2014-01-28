@@ -26,7 +26,7 @@ Pre-Depends: ${misc:Pre-Depends},
 Depends: python3-dbusmock,
          ${misc:Depends},
          ${shlibs:Depends},
-Description: Library for mocking DBus interations using Qt
+Description: Library for mocking DBus interactions using Qt
  A simple library for mocking DBus services with a Qt API
  .
  This package contains the shared libraries.
@@ -37,7 +37,7 @@ Architecture: any
 Multi-Arch: same
 Depends: libqtdbusmock1 (= ${binary:Version}),
          ${misc:Depends},
-Description: Library for mocking DBus interations using Qt
+Description: Library for mocking DBus interactions using Qt
  A simple library for mocking DBus services with a Qt API
  .
  This package contains files that are needed to build.
