@@ -1,3 +1,12 @@
+libqtdbusmock (0.2+14.04.20140304-0ubuntu1) trusty; urgency=low
+
+  [ Pete Woods ]
+  * Valgrind is not present on all architectures. (LP: #1263925,
+    #1263926)
+  * Disable Valgrind on ARM (LP: #1287135)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 04 Mar 2014 05:30:00 +0000
+
 libqtdbusmock (0.2+14.04.20131128.1-0ubuntu3) trusty; urgency=medium
 
   * Disable the testsuite on i386 for now. See #1262638 and #1263926.
