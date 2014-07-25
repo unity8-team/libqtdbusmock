@@ -38,8 +38,8 @@ public:
 	static void registerMetaTypes();
 
 	virtual void registerTemplate(const QString &service,
-                                      const QString &templateName,
-                                      QDBusConnection::BusType busType);
+	                              const QString &templateName,
+	                              QDBusConnection::BusType busType);
 
 	virtual void registerNetworkManager();
 
