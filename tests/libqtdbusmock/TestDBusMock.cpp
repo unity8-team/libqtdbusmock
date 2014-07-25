@@ -91,11 +91,11 @@ TEST_F(TestDBusMock, StartsDBusMockWithNM) {
 			dbusMock.networkManagerInterface());
 	networkManager.AddWiFiDevice("device", "eth1", NM_STATE_DISCONNECTED).waitForFinished();
 
-	QDBusInterface *iface = new QDBusInterface(NM_DBUS_SERVICE, NM_DBUS_PATH,
-	                                           NM_DBUS_INTERFACE,
-	                                           dbusTestRunner.systemConnection());
+	QDBusInterface iface(NM_DBUS_SERVICE, NM_DBUS_PATH,
+	                     NM_DBUS_INTERFACE,
+	                     dbusTestRunner.systemConnection());
 
-	QDBusReply<QList<QDBusObjectPath> > devices = iface->call("GetDevices");
+	QDBusReply<QList<QDBusObjectPath> > devices = iface.call("GetDevices");
 
 	ASSERT_EQ(true, devices.isValid());
 	ASSERT_EQ(1, devices.value().size());
@@ -115,11 +115,11 @@ TEST_F(TestDBusMock, StartsDBusMockWithTemplate) {
 			dbusMock.networkManagerInterface());
 	networkManager.AddWiFiDevice("device", "eth1", NM_STATE_DISCONNECTED).waitForFinished();
 
-	QDBusInterface *iface = new QDBusInterface(NM_DBUS_SERVICE, NM_DBUS_PATH,
-	                                           NM_DBUS_INTERFACE,
-	                                           dbusTestRunner.systemConnection());
+	QDBusInterface iface (NM_DBUS_SERVICE, NM_DBUS_PATH,
+	                      NM_DBUS_INTERFACE,
+	                      dbusTestRunner.systemConnection());
 
-	QDBusReply<QList<QDBusObjectPath> > devices = iface->call("GetDevices");
+	QDBusReply<QList<QDBusObjectPath> > devices = iface.call("GetDevices");
 
 	ASSERT_EQ(true, devices.isValid());
 	ASSERT_EQ(1, devices.value().size());
