@@ -19,6 +19,9 @@
 #include <libqtdbusmock/DBusMock.h>
 #include <QCoreApplication>
 #include <NetworkManager.h>
+#include <QList>
+#include <QDBusInterface>
+#include <QDBusObjectPath>
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -88,14 +91,14 @@ TEST_F(TestDBusMock, StartsDBusMockWithNM) {
 			dbusMock.networkManagerInterface());
 	networkManager.AddWiFiDevice("device", "eth1", NM_STATE_DISCONNECTED).waitForFinished();
 
-//	OrgFreedesktopDBusMockInterface &networkManagerMock(
-//			dbusMock.mockInterface(NM_DBUS_SERVICE, NM_DBUS_PATH,
-//					NM_DBUS_INTERFACE, QDBusConnection::SystemBus));
-//	QList<MethodCall> methodCalls(
-//			networkManagerMock.GetMethodCalls("AddWiFiDevice"));
+	QDBusInterface *iface = new QDBusInterface(NM_DBUS_SERVICE, NM_DBUS_PATH,
+	                                           NM_DBUS_INTERFACE,
+	                                           dbusTestRunner.systemConnection());
 
-//	ASSERT_EQ(1, methodCalls.size());
-//	ASSERT_EQ(3, methodCalls.first().args().size());
+	QDBusReply<QList<QDBusObjectPath> > devices = iface->call("GetDevices");
+
+	ASSERT_EQ(true, devices.isValid());
+	ASSERT_EQ(1, devices.value().size());
 }
 
 TEST_F(TestDBusMock, StartsDBusMockWithTemplate) {
@@ -111,6 +114,15 @@ TEST_F(TestDBusMock, StartsDBusMockWithTemplate) {
 	NetworkManagerMockInterface &networkManager(
 			dbusMock.networkManagerInterface());
 	networkManager.AddWiFiDevice("device", "eth1", NM_STATE_DISCONNECTED).waitForFinished();
+
+	QDBusInterface *iface = new QDBusInterface(NM_DBUS_SERVICE, NM_DBUS_PATH,
+	                                           NM_DBUS_INTERFACE,
+	                                           dbusTestRunner.systemConnection());
+
+	QDBusReply<QList<QDBusObjectPath> > devices = iface->call("GetDevices");
+
+	ASSERT_EQ(true, devices.isValid());
+	ASSERT_EQ(1, devices.value().size());
 }
 
 TEST_F(TestDBusMock, GetMethodCalls) {
