@@ -51,13 +51,19 @@ void DBusMock::registerMetaTypes() {
 	NamedMethodCall::registerMetaType();
 }
 
-void DBusMock::registerNetworkManager() {
+void DBusMock::registerTemplate(const QString &service,
+                                const QString &templateName,
+                                QDBusConnection::BusType busType) {
 	d->m_testRunner.registerService(
 			DBusServicePtr(
-					new QProcessDBusService(NM_DBUS_SERVICE,
-							QDBusConnection::SystemBus, "python3",
+					new QProcessDBusService(service,
+							busType, "python3",
 							QStringList() << "-m" << "dbusmock" << "--template"
-									<< "networkmanager")));
+									<< templateName)));
+}
+
+void DBusMock::registerNetworkManager() {
+	registerTemplate(NM_DBUS_SERVICE, "networkmanager", QDBusConnection::SystemBus);
 }
 
 void DBusMock::registerCustomMock(const QString &name, const QString &path,

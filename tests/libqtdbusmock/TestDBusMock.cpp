@@ -76,7 +76,7 @@ TEST_F(TestDBusMock, StartsDBusMockSystem) {
 					"python3 -m dbusmock -s test.name2 /test/object2 test.Interface2"));
 }
 
-TEST_F(TestDBusMock, StartsDBusMockWithTemplate) {
+TEST_F(TestDBusMock, StartsDBusMockWithNM) {
 	dbusMock.registerNetworkManager();
 	dbusTestRunner.startServices();
 
@@ -96,6 +96,21 @@ TEST_F(TestDBusMock, StartsDBusMockWithTemplate) {
 
 //	ASSERT_EQ(1, methodCalls.size());
 //	ASSERT_EQ(3, methodCalls.first().args().size());
+}
+
+TEST_F(TestDBusMock, StartsDBusMockWithTemplate) {
+	dbusMock.registerTemplate(NM_DBUS_SERVICE,
+                                  "networkmanager",
+                                  QDBusConnection::SystemBus);
+	dbusTestRunner.startServices();
+
+	EXPECT_TRUE(
+			processListContains(
+					"python3 -m dbusmock --template networkmanager"));
+
+	NetworkManagerMockInterface &networkManager(
+			dbusMock.networkManagerInterface());
+	networkManager.AddWiFiDevice("device", "eth1", NM_STATE_DISCONNECTED).waitForFinished();
 }
 
 TEST_F(TestDBusMock, GetMethodCalls) {

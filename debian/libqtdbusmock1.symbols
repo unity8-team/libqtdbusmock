@@ -36,6 +36,7 @@ libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
  (c++)"QtDBusMock::DBusMock::registerMetaTypes()@Base" 0.1
  (c++)"QtDBusMock::DBusMock::registerCustomMock(QString const&, QString const&, QString const&, QDBusConnection::BusType)@Base" 0.1
  (c++)"QtDBusMock::DBusMock::registerNetworkManager()@Base" 0.1
+ (c++)"QtDBusMock::DBusMock::registerTemplate(QString const&, QString const&, QDBusConnection::BusType)@Base" 0changeme
  (c++)"QtDBusMock::DBusMock::networkManagerInterface()@Base" 0.1
  (c++)"QtDBusMock::DBusMock::DBusMock(QtDBusTest::DBusTestRunner&)@Base" 0.1
  (c++)"QtDBusMock::DBusMock::DBusMock(QtDBusTest::DBusTestRunner&)@Base" 0.1
