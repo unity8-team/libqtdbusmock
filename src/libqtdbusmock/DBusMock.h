@@ -37,6 +37,10 @@ public:
 	Q_DECL_EXPORT
 	static void registerMetaTypes();
 
+	virtual void registerTemplate(const QString &service,
+	                              const QString &templateName,
+	                              QDBusConnection::BusType busType);
+
 	virtual void registerNetworkManager();
 
 	virtual void registerCustomMock(const QString &name, const QString &path,
