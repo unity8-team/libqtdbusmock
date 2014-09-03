@@ -21,9 +21,9 @@ Vcs-Bzr: https://code.launchpad.net/~unity-team/libqtdbustest/trunk
 Package: libqtdbusmock1
 Section: libs
 Architecture: any
-Multi-Arch: same
+Multi-Arch: foreign
 Pre-Depends: ${misc:Pre-Depends},
-Depends: python3-dbusmock:any,
+Depends: python3-dbusmock,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Library for mocking DBus interactions using Qt
