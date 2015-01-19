@@ -43,6 +43,10 @@ public:
 
 	virtual void registerNetworkManager();
 
+	virtual void registerOfono();
+
+	virtual void registerURfkill();
+
 	virtual void registerCustomMock(const QString &name, const QString &path,
 			const QString &interface, QDBusConnection::BusType);
 

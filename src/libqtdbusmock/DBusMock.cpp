@@ -66,6 +66,14 @@ void DBusMock::registerNetworkManager() {
 	registerTemplate(NM_DBUS_SERVICE, "networkmanager", QDBusConnection::SystemBus);
 }
 
+void DBusMock::registerOfono() {
+	registerTemplate("org.ofono", "ofono", QDBusConnection::SystemBus);
+}
+
+void DBusMock::registerURfkill() {
+	registerTemplate("org.freedesktop.URfkill", "urfkill", QDBusConnection::SystemBus);
+}
+
 void DBusMock::registerCustomMock(const QString &name, const QString &path,
 		const QString &interface, QDBusConnection::BusType busType) {
 	QStringList args;
