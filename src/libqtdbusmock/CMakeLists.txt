@@ -19,6 +19,9 @@ set(
 	"${CMAKE_CURRENT_BINARY_DIR}/MockInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/PropertiesInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/NetworkManagerMockInterface.h"
+	"${CMAKE_CURRENT_BINARY_DIR}/URfkillInterface.h"
+	"${CMAKE_CURRENT_BINARY_DIR}/URfkillDeviceInterface.h"
+	"${CMAKE_CURRENT_BINARY_DIR}/URfkillKillswitchInterface.h"
 )
 
 set_source_files_properties(
@@ -55,10 +58,47 @@ qt5_add_dbus_interface(
 	PropertiesInterface
 )
 
+
 qt5_add_dbus_interface(
 	QTDBUSMOCK_SRC
 	"${DATA_DIR}/nm-manager-mock.xml"
 	NetworkManagerMockInterface
+)
+
+set_source_files_properties(
+	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.xml"
+	PROPERTIES
+	NO_NAMESPACE YES
+)
+
+set_source_files_properties(
+	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.Device.xml"
+	PROPERTIES
+	NO_NAMESPACE YES
+)
+
+set_source_files_properties(
+	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.Killswitch.xml"
+	PROPERTIES
+	NO_NAMESPACE YES
+)
+
+qt5_add_dbus_interface(
+	QTDBUSMOCK_SRC
+	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.xml"
+	URfkillInterface
+)
+
+qt5_add_dbus_interface(
+	QTDBUSMOCK_SRC
+	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.Device.xml"
+	URfkillDeviceInterface
+)
+
+qt5_add_dbus_interface(
+	QTDBUSMOCK_SRC
+	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.Killswitch.xml"
+	URfkillKillswitchInterface
 )
 
 add_library(

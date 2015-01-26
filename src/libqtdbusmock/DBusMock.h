@@ -23,6 +23,8 @@
 #include <libqtdbusmock/MockInterface.h>
 #include <libqtdbusmock/NetworkManagerMockInterface.h>
 #include <libqtdbusmock/MockInterfaceClasses.h>
+#include <libqtdbusmock/URfkillInterface.h>
+#include <libqtdbusmock/URfkillKillswitchInterface.h>
 
 namespace QtDBusMock {
 
@@ -55,6 +57,10 @@ public:
 	virtual OrgFreedesktopDBusMockInterface & mockInterface(const QString &name,
 			const QString &path, const QString &interface,
 			QDBusConnection::BusType busType);
+
+	virtual OrgFreedesktopURfkillInterface & urfkillInterface();
+
+	virtual OrgFreedesktopURfkillKillswitchInterface & urfkillKillswitchInterface(const QString& device);
 
 private:
 	QSharedPointer<DBusMockPrivate> d;

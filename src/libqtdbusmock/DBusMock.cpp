@@ -35,6 +35,10 @@ public:
 
 	QScopedPointer<NetworkManagerMockInterface> m_networkManagerMock;
 
+	QScopedPointer<OrgFreedesktopURfkillInterface> m_urfkillInterface;
+
+	QMap<QString, QSharedPointer<OrgFreedesktopURfkillKillswitchInterface> > m_urfkillKillSwitchInterfaces;
+
 	QMap<QString, QSharedPointer<OrgFreedesktopDBusMockInterface> > m_mockInterfaces;
 };
 
@@ -94,6 +98,30 @@ NetworkManagerMockInterface & DBusMock::networkManagerInterface() {
 						d->m_testRunner.systemConnection()));
 	}
 	return *d->m_networkManagerMock;
+}
+
+OrgFreedesktopURfkillInterface & DBusMock::urfkillInterface() {
+	if (d->m_urfkillInterface.isNull()) {
+		d->m_urfkillInterface.reset(
+				new OrgFreedesktopURfkillInterface(
+						"org.freedesktop.URfkill", "/org/freedesktop/URfkill",
+						d->m_testRunner.systemConnection()));
+	}
+	return *d->m_urfkillInterface;
+}
+
+OrgFreedesktopURfkillKillswitchInterface & DBusMock::urfkillKillswitchInterface(const QString& device)
+{
+	QSharedPointer<OrgFreedesktopURfkillKillswitchInterface> interface = d->m_urfkillKillSwitchInterfaces["device"];
+	if (!interface) {
+		interface.reset(
+				new OrgFreedesktopURfkillKillswitchInterface(
+						"org.freedesktop.URfkill",
+						QString("/org/freedesktop/URfkill/%1").arg(device),
+						d->m_testRunner.systemConnection()));
+		d->m_urfkillKillSwitchInterfaces["device"] = interface;
+	}
+	return *interface;
 }
 
 OrgFreedesktopDBusMockInterface & DBusMock::mockInterface(const QString &name,
