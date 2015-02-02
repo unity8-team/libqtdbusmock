@@ -22,6 +22,7 @@
 #include <libqtdbustest/DBusTestRunner.h>
 #include <libqtdbusmock/MockInterface.h>
 #include <libqtdbusmock/NetworkManagerMockInterface.h>
+#include <libqtdbusmock/OfonoMockInterface.h>
 #include <libqtdbusmock/MockInterfaceClasses.h>
 #include <libqtdbusmock/URfkillInterface.h>
 #include <libqtdbusmock/URfkillKillswitchInterface.h>
@@ -57,6 +58,8 @@ public:
 	virtual OrgFreedesktopDBusMockInterface & mockInterface(const QString &name,
 			const QString &path, const QString &interface,
 			QDBusConnection::BusType busType);
+
+	virtual OfonoMockInterface & ofonoInterface();
 
 	virtual OrgFreedesktopURfkillInterface & urfkillInterface();
 

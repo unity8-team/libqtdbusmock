@@ -35,6 +35,8 @@ public:
 
 	QScopedPointer<NetworkManagerMockInterface> m_networkManagerMock;
 
+	QScopedPointer<OfonoMockInterface> m_ofonoInterface;
+
 	QScopedPointer<OrgFreedesktopURfkillInterface> m_urfkillInterface;
 
 	QMap<QString, QSharedPointer<OrgFreedesktopURfkillKillswitchInterface> > m_urfkillKillSwitchInterfaces;
@@ -100,6 +102,14 @@ NetworkManagerMockInterface & DBusMock::networkManagerInterface() {
 	return *d->m_networkManagerMock;
 }
 
+OfonoMockInterface & DBusMock::ofonoInterface() {
+	if (d->m_ofonoInterface.isNull()) {
+		d->m_ofonoInterface.reset(
+				new OfonoMockInterface("org.ofono", "/",
+						d->m_testRunner.systemConnection()));
+	}
+	return *d->m_ofonoInterface;
+}
 OrgFreedesktopURfkillInterface & DBusMock::urfkillInterface() {
 	if (d->m_urfkillInterface.isNull()) {
 		d->m_urfkillInterface.reset(
