@@ -20,7 +20,8 @@ set(
 	"${CMAKE_CURRENT_BINARY_DIR}/PropertiesInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/NetworkManagerMockInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/OfonoMockInterface.h"
-	"${CMAKE_CURRENT_BINARY_DIR}/URfkillInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/OfonoSimManagerInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/URfkillInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/URfkillDeviceInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/URfkillKillswitchInterface.h"
 )
@@ -54,6 +55,13 @@ set_source_files_properties(
 	CLASSNAME OfonoMockInterface
 )
 
+set_source_files_properties(
+        "${DATA_DIR}/ofono-simmanager.xml"
+        PROPERTIES
+        NO_NAMESPACE YES
+        CLASSNAME OfonoSimManagerInterface
+)
+
 qt5_add_dbus_interface(
 	QTDBUSMOCK_SRC
 	"${DATA_DIR}/org.freedesktop.DBus.Mock.xml"
@@ -76,6 +84,12 @@ qt5_add_dbus_interface(
 	QTDBUSMOCK_SRC
 	"${DATA_DIR}/ofono-mock.xml"
 	OfonoMockInterface
+)
+
+qt5_add_dbus_interface(
+        QTDBUSMOCK_SRC
+        "${DATA_DIR}/ofono-simmanager.xml"
+        OfonoSimManagerInterface
 )
 
 set_source_files_properties(

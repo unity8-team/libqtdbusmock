@@ -23,6 +23,7 @@
 #include <libqtdbusmock/MockInterface.h>
 #include <libqtdbusmock/NetworkManagerMockInterface.h>
 #include <libqtdbusmock/OfonoMockInterface.h>
+#include <libqtdbusmock/OfonoSimManagerInterface.h>
 #include <libqtdbusmock/MockInterfaceClasses.h>
 #include <libqtdbusmock/URfkillInterface.h>
 #include <libqtdbusmock/URfkillKillswitchInterface.h>
@@ -60,6 +61,8 @@ public:
 			QDBusConnection::BusType busType);
 
 	virtual OfonoMockInterface & ofonoInterface();
+
+	virtual OfonoSimManagerInterface & ofonoSimManagerInterface(int modemIndex);
 
 	virtual OrgFreedesktopURfkillInterface & urfkillInterface();
 

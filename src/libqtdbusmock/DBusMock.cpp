@@ -37,6 +37,8 @@ public:
 
 	QScopedPointer<OfonoMockInterface> m_ofonoInterface;
 
+	QScopedPointer<OfonoSimManagerInterface> m_ofonoSimManagerInterface;
+
 	QScopedPointer<OrgFreedesktopURfkillInterface> m_urfkillInterface;
 
 	QMap<QString, QSharedPointer<OrgFreedesktopURfkillKillswitchInterface> > m_urfkillKillSwitchInterfaces;
@@ -110,6 +112,16 @@ OfonoMockInterface & DBusMock::ofonoInterface() {
 	}
 	return *d->m_ofonoInterface;
 }
+
+OfonoSimManagerInterface & DBusMock::ofonoSimManagerInterface(int modemIndex) {
+	if (d->m_ofonoSimManagerInterface.isNull()) {
+		d->m_ofonoSimManagerInterface.reset(
+				new OfonoSimManagerInterface("org.ofono", "/ril_" + QString::number(modemIndex),
+						d->m_testRunner.systemConnection()));
+	}
+	return *d->m_ofonoSimManagerInterface;
+}
+
 OrgFreedesktopURfkillInterface & DBusMock::urfkillInterface() {
 	if (d->m_urfkillInterface.isNull()) {
 		d->m_urfkillInterface.reset(
