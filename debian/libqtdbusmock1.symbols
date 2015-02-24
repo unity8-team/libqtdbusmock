@@ -41,6 +41,9 @@ libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
  (c++)"QtDBusMock::DBusMock::registerTemplate(QString const&, QString const&, QDBusConnection::BusType)@Base" 0changeme
  (c++)"QtDBusMock::DBusMock::networkManagerInterface()@Base" 0.1
  (c++)"QtDBusMock::DBusMock::ofonoInterface()@Base" 0replaceme
+ (c++)"QtDBusMock::DBusMock::ofonoSimManagerInterface(int)@Base" 0replaceme
+ (c++)"QtDBusMock::DBusMock::ofonoNetworkRegistrationInterface(int)@Base" 0replaceme
+
  (c++)"QtDBusMock::DBusMock::urfkillInterface()@Base" 0replaceme
  (c++)"QtDBusMock::DBusMock::urfkillKillswitchInterface(QString const&)@Base" 0replaceme
  (c++)"QtDBusMock::DBusMock::DBusMock(QtDBusTest::DBusTestRunner&)@Base" 0.1
