@@ -53,5 +53,15 @@
 			<arg name="state" type="u" direction="in"/>
 		</method>
 
+		<method name="RemoveWifiConnection">
+			<arg name="device_path" type="s" direction="in"/>
+			<arg name="connection_path" type="s" direction="in"/>
+		</method>
+
+		<method name="RemoveAccessPoint">
+			<arg name="device_path" type="s" direction="in"/>
+			<arg name="access_point_path" type="s" direction="in"/>
+		</method>
+
 	</interface>
 </node>
