@@ -3,12 +3,12 @@
   <interface name="org.ofono.SimManager">
     <method name="GetProperties">
       <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QVariantMap"/>
-      <arg direction="out" name="name" type="a{sv}" />
+      <arg direction="out" name="properties" type="a{sv}" />
     </method>
 
     <method name="SetProperty">
       <arg direction="in" name="name" type="s" />
-      <arg direction="in" name="properties" type="v" />
+      <arg direction="in" name="property" type="v" />
     </method>
 
     <method name="ChangePin">
