@@ -65,6 +65,7 @@ libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
  (c++)"NetworkManagerMockInterface::RemoveWifiConnection(QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
  (c++)"NetworkManagerMockInterface::RemoveActiveConnection(QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
  (c++)"NetworkManagerMockInterface::SetGlobalConnectionState(unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
+ (c++)"NetworkManagerMockInterface::SetProperty(QString const&, QString const&, QString const&, QDBusVariant const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
  (c++)"OrgFreedesktopDBusMockInterface::qt_metacall(QMetaObject::Call, int, void**)@Base" 0.1
  (c++)"OrgFreedesktopDBusMockInterface::qt_metacast(char const*)@Base" 0.1
  (c++)"OrgFreedesktopDBusMockInterface::MethodCalled(QString const&, QList<QVariant> const&)@Base" 0.1
