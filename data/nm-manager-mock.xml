@@ -64,5 +64,10 @@
 			<arg name="access_point_path" type="s" direction="in"/>
 		</method>
 
+		<method name="RemoveActiveConnection">
+			<arg name="device_path" type="s" direction="in"/>
+			<arg name="active_connection_path" type="s" direction="in"/>
+		</method>
+
 	</interface>
 </node>

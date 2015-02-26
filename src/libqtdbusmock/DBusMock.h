@@ -64,7 +64,7 @@ public:
 
 	virtual OfonoMockInterface & ofonoInterface();
 
-	virtual OfonoModemInterface & ofonoModemInterface();
+	virtual OfonoModemInterface & ofonoModemInterface(int modemIndex);
 
 	virtual OfonoSimManagerInterface & ofonoSimManagerInterface(int modemIndex);
 
