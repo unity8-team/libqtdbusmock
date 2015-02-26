@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf8'?>
 <node name="/">
   <interface name="org.ofono.Modem">
-    <method name="SetProperty">
-      <arg direction="in" name="name" type="s" />
-      <arg direction="in" name="properties" type="v" />
+    <method name="GetProperties">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QVariantMap"/>
+      <arg direction="out" name="properties" type="a{sv}" />
     </method>
 
-    <method name="GetProperties">
-      <arg direction="out" name="name" type="a{sv}" />
-      <annotation name="org.qtproject.QtDBus.QtTypeName.Out1" value="QVariantMap"/>
+    <method name="SetProperty">
+      <arg direction="in" name="name" type="s" />
+      <arg direction="in" name="property" type="v" />
     </method>
 
     <signal name="PropertyChanged">
