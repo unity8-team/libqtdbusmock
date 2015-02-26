@@ -41,6 +41,7 @@ libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
  (c++)"QtDBusMock::DBusMock::registerTemplate(QString const&, QString const&, QDBusConnection::BusType)@Base" 0changeme
  (c++)"QtDBusMock::DBusMock::networkManagerInterface()@Base" 0.1
  (c++)"QtDBusMock::DBusMock::ofonoInterface()@Base" 0replaceme
+ (c++)"QtDBusMock::DBusMock::ofonoModemInterface(int)@Base" 0replaceme
  (c++)"QtDBusMock::DBusMock::ofonoSimManagerInterface(int)@Base" 0replaceme
  (c++)"QtDBusMock::DBusMock::ofonoNetworkRegistrationInterface(int)@Base" 0replaceme
  (c++)"QtDBusMock::DBusMock::urfkillInterface()@Base" 0replaceme
@@ -56,12 +57,13 @@ libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
  (c++)"NetworkManagerMockInterface::NetworkManagerMockInterface(QString const&, QString const&, QDBusConnection const&, QObject*)@Base" 0.1
  (c++)"NetworkManagerMockInterface::~NetworkManagerMockInterface()@Base" 0.1
  (c++)"NetworkManagerMockInterface::AddWiFiDevice(QString const&, QString const&, int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
- (c++)"NetworkManagerMockInterface::AddAccessPoint(QString const&, QString const&, QString const&, QString const&, unsigned int, unsigned int, unsigned int, unsigned char, unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
+ (c++)"NetworkManagerMockInterface::AddAccessPoint(QString const&, QString const&, QString const&, QString const&, unsigned int, unsigned int, unsigned int, unsigned char, unsigned int, unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
  (c++)"NetworkManagerMockInterface::SetDeviceActive(QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
  (c++)"NetworkManagerMockInterface::AddWiFiConnection(QString const&, QString const&, QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
  (c++)"NetworkManagerMockInterface::RemoveAccessPoint(QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
  (c++)"NetworkManagerMockInterface::AddActiveConnection(QStringList const&, QString const&, QString const&, QString const&, unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
  (c++)"NetworkManagerMockInterface::RemoveWifiConnection(QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
+ (c++)"NetworkManagerMockInterface::RemoveActiveConnection(QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
  (c++)"NetworkManagerMockInterface::SetGlobalConnectionState(unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
  (c++)"OrgFreedesktopDBusMockInterface::qt_metacall(QMetaObject::Call, int, void**)@Base" 0.1
  (c++)"OrgFreedesktopDBusMockInterface::qt_metacast(char const*)@Base" 0.1
