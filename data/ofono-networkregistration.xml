@@ -11,11 +11,6 @@
       <arg direction="in" name="property" type="v" />
     </method>
 
-    <method name="SetProperty">
-      <arg direction="in" name="name" type="s" />
-      <arg direction="in" name="property" type="y" />
-    </method>
-
     <method name="Register">
     </method>
 
