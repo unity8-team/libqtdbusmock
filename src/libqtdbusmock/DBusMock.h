@@ -24,6 +24,7 @@
 #include <libqtdbusmock/NetworkManagerMockInterface.h>
 #include <libqtdbusmock/OfonoMockInterface.h>
 #include <libqtdbusmock/OfonoModemInterface.h>
+#include <libqtdbusmock/OfonoConnectionManagerInterface.h>
 #include <libqtdbusmock/OfonoSimManagerInterface.h>
 #include <libqtdbusmock/OfonoNetworkRegistrationInterface.h>
 #include <libqtdbusmock/MockInterfaceClasses.h>
@@ -67,6 +68,8 @@ public:
 	virtual OfonoModemInterface & ofonoModemInterface(int modemIndex);
 
 	virtual OfonoSimManagerInterface & ofonoSimManagerInterface(int modemIndex);
+
+	virtual OfonoConnectionManagerInterface & ofonoConnectionManagerInterface(int modemIndex);
 
 	virtual OfonoNetworkRegistrationInterface & ofonoNetworkRegistrationInterface(int modemIndex);
 

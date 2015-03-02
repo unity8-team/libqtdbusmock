@@ -72,6 +72,13 @@ set_source_files_properties(
 )
 
 set_source_files_properties(
+        "${DATA_DIR}/ofono-connectionmanager.xml"
+        PROPERTIES
+        NO_NAMESPACE YES
+        CLASSNAME OfonoConnectionManagerInterface
+)
+
+set_source_files_properties(
         "${DATA_DIR}/ofono-networkregistration.xml"
         PROPERTIES
         NO_NAMESPACE YES
@@ -106,6 +113,12 @@ qt5_add_dbus_interface(
         QTDBUSMOCK_SRC
         "${DATA_DIR}/ofono-modem-mock.xml"
         OfonoModemInterface
+)
+
+qt5_add_dbus_interface(
+        QTDBUSMOCK_SRC
+        "${DATA_DIR}/ofono-connectionmanager.xml"
+        OfonoConnectionManagerInterface
 )
 
 qt5_add_dbus_interface(

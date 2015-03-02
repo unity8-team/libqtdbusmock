@@ -41,6 +41,8 @@ public:
 
 	QScopedPointer<OfonoSimManagerInterface> m_ofonoSimManagerInterface;
 
+	QScopedPointer<OfonoConnectionManagerInterface> m_ofonoConnectionManagerInterface;
+
 	QScopedPointer<OfonoNetworkRegistrationInterface> m_ofonoNetworkRegistrationInterface;
 
 	QScopedPointer<OrgFreedesktopURfkillInterface> m_urfkillInterface;
@@ -133,6 +135,15 @@ OfonoSimManagerInterface & DBusMock::ofonoSimManagerInterface(int modemIndex) {
 						d->m_testRunner.systemConnection()));
 	}
 	return *d->m_ofonoSimManagerInterface;
+}
+
+OfonoConnectionManagerInterface & DBusMock::ofonoConnectionManagerInterface(int modemIndex) {
+	if (d->m_ofonoConnectionManagerInterface.isNull()) {
+		d->m_ofonoConnectionManagerInterface.reset(
+				new OfonoConnectionManagerInterface("org.ofono", "/ril_" + QString::number(modemIndex),
+						d->m_testRunner.systemConnection()));
+	}
+	return *d->m_ofonoConnectionManagerInterface;
 }
 
 OfonoNetworkRegistrationInterface & DBusMock::ofonoNetworkRegistrationInterface(int modemIndex) {
