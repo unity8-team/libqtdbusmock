@@ -21,6 +21,7 @@ set(
 	"${CMAKE_CURRENT_BINARY_DIR}/NetworkManagerMockInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/OfonoMockInterface.h"
         "${CMAKE_CURRENT_BINARY_DIR}/OfonoModemInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/OfonoConnectionManagerInterface.h"
         "${CMAKE_CURRENT_BINARY_DIR}/OfonoSimManagerInterface.h"
         "${CMAKE_CURRENT_BINARY_DIR}/OfonoNetworkRegistrationInterface.h"
         "${CMAKE_CURRENT_BINARY_DIR}/URfkillInterface.h"
