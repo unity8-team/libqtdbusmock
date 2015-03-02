@@ -37,13 +37,13 @@ public:
 
 	QScopedPointer<OfonoMockInterface> m_ofonoInterface;
 
-	QScopedPointer<OfonoModemInterface> m_ofonoModemInterface;
+	QMap<QString, QSharedPointer<OfonoModemInterface>> m_ofonoModemInterface;
 
-	QScopedPointer<OfonoSimManagerInterface> m_ofonoSimManagerInterface;
+	QMap<QString, QSharedPointer<OfonoSimManagerInterface>> m_ofonoSimManagerInterface;
 
-	QScopedPointer<OfonoConnectionManagerInterface> m_ofonoConnectionManagerInterface;
+	QMap<QString, QSharedPointer<OfonoConnectionManagerInterface>> m_ofonoConnectionManagerInterface;
 
-	QScopedPointer<OfonoNetworkRegistrationInterface> m_ofonoNetworkRegistrationInterface;
+	QMap<QString, QSharedPointer<OfonoNetworkRegistrationInterface>> m_ofonoNetworkRegistrationInterface;
 
 	QScopedPointer<OrgFreedesktopURfkillInterface> m_urfkillInterface;
 
@@ -119,40 +119,52 @@ OfonoMockInterface & DBusMock::ofonoInterface() {
 	return *d->m_ofonoInterface;
 }
 
-OfonoModemInterface & DBusMock::ofonoModemInterface(int modemIndex) {
-	if (d->m_ofonoModemInterface.isNull()) {
-		d->m_ofonoModemInterface.reset(
-				new OfonoModemInterface("org.ofono", "/ril_" + QString::number(modemIndex),
+OfonoModemInterface & DBusMock::ofonoModemInterface(const QString& path) {
+	QSharedPointer<OfonoModemInterface> interface =
+			d->m_ofonoModemInterface[path];
+	if (!interface) {
+		interface.reset(
+				new OfonoModemInterface("org.ofono", path,
 						d->m_testRunner.systemConnection()));
+		d->m_ofonoModemInterface[path] = interface;
 	}
-	return *d->m_ofonoModemInterface;
+	return *interface;
 }
 
-OfonoSimManagerInterface & DBusMock::ofonoSimManagerInterface(int modemIndex) {
-	if (d->m_ofonoSimManagerInterface.isNull()) {
-		d->m_ofonoSimManagerInterface.reset(
-				new OfonoSimManagerInterface("org.ofono", "/ril_" + QString::number(modemIndex),
+OfonoSimManagerInterface & DBusMock::ofonoSimManagerInterface(const QString& path) {
+	QSharedPointer<OfonoSimManagerInterface> interface =
+			d->m_ofonoSimManagerInterface[path];
+	if (!interface) {
+		interface.reset(
+				new OfonoSimManagerInterface("org.ofono", path,
 						d->m_testRunner.systemConnection()));
+		d->m_ofonoSimManagerInterface[path] = interface;
 	}
-	return *d->m_ofonoSimManagerInterface;
+	return *interface;
 }
 
-OfonoConnectionManagerInterface & DBusMock::ofonoConnectionManagerInterface(int modemIndex) {
-	if (d->m_ofonoConnectionManagerInterface.isNull()) {
-		d->m_ofonoConnectionManagerInterface.reset(
-				new OfonoConnectionManagerInterface("org.ofono", "/ril_" + QString::number(modemIndex),
+OfonoConnectionManagerInterface & DBusMock::ofonoConnectionManagerInterface(const QString& path) {
+	QSharedPointer<OfonoConnectionManagerInterface> interface =
+			d->m_ofonoConnectionManagerInterface[path];
+	if (!interface) {
+		interface.reset(
+				new OfonoConnectionManagerInterface("org.ofono", path,
 						d->m_testRunner.systemConnection()));
+		d->m_ofonoConnectionManagerInterface[path] = interface;
 	}
-	return *d->m_ofonoConnectionManagerInterface;
+	return *interface;
 }
 
-OfonoNetworkRegistrationInterface & DBusMock::ofonoNetworkRegistrationInterface(int modemIndex) {
-	if (d->m_ofonoNetworkRegistrationInterface.isNull()) {
-		d->m_ofonoNetworkRegistrationInterface.reset(
-				new OfonoNetworkRegistrationInterface("org.ofono", "/ril_" + QString::number(modemIndex),
+OfonoNetworkRegistrationInterface & DBusMock::ofonoNetworkRegistrationInterface(const QString& path) {
+	QSharedPointer<OfonoNetworkRegistrationInterface> interface =
+			d->m_ofonoNetworkRegistrationInterface[path];
+	if (!interface) {
+		interface.reset(
+				new OfonoNetworkRegistrationInterface("org.ofono", path,
 						d->m_testRunner.systemConnection()));
+		d->m_ofonoNetworkRegistrationInterface[path] = interface;
 	}
-	return *d->m_ofonoNetworkRegistrationInterface;
+	return *interface;
 }
 
 OrgFreedesktopURfkillInterface & DBusMock::urfkillInterface() {
@@ -167,14 +179,14 @@ OrgFreedesktopURfkillInterface & DBusMock::urfkillInterface() {
 
 OrgFreedesktopURfkillKillswitchInterface & DBusMock::urfkillKillswitchInterface(const QString& device)
 {
-	QSharedPointer<OrgFreedesktopURfkillKillswitchInterface> interface = d->m_urfkillKillSwitchInterfaces["device"];
+	QSharedPointer<OrgFreedesktopURfkillKillswitchInterface> interface = d->m_urfkillKillSwitchInterfaces[device];
 	if (!interface) {
 		interface.reset(
 				new OrgFreedesktopURfkillKillswitchInterface(
 						"org.freedesktop.URfkill",
 						QString("/org/freedesktop/URfkill/%1").arg(device),
 						d->m_testRunner.systemConnection()));
-		d->m_urfkillKillSwitchInterfaces["device"] = interface;
+		d->m_urfkillKillSwitchInterfaces[device] = interface;
 	}
 	return *interface;
 }

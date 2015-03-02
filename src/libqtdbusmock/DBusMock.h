@@ -65,13 +65,13 @@ public:
 
 	virtual OfonoMockInterface & ofonoInterface();
 
-	virtual OfonoModemInterface & ofonoModemInterface(int modemIndex);
+	virtual OfonoModemInterface & ofonoModemInterface(const QString &path);
 
-	virtual OfonoSimManagerInterface & ofonoSimManagerInterface(int modemIndex);
+	virtual OfonoSimManagerInterface & ofonoSimManagerInterface(const QString &path);
 
-	virtual OfonoConnectionManagerInterface & ofonoConnectionManagerInterface(int modemIndex);
+	virtual OfonoConnectionManagerInterface & ofonoConnectionManagerInterface(const QString &path);
 
-	virtual OfonoNetworkRegistrationInterface & ofonoNetworkRegistrationInterface(int modemIndex);
+	virtual OfonoNetworkRegistrationInterface & ofonoNetworkRegistrationInterface(const QString &path);
 
 	virtual OrgFreedesktopURfkillInterface & urfkillInterface();
 
