@@ -51,6 +51,8 @@ public:
 
 	virtual void registerNetworkManager();
 
+	virtual void registerNotifications();
+
 	virtual void registerOfono();
 
 	virtual void registerURfkill();
