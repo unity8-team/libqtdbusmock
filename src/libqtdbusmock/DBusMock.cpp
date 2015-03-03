@@ -80,7 +80,7 @@ void DBusMock::registerNetworkManager() {
 	registerTemplate(NM_DBUS_SERVICE, "networkmanager", QDBusConnection::SystemBus);
 }
 
-void DBusMock::registerNotifications() {
+void DBusMock::registerNotificationDaemon() {
 	registerTemplate("org.freedesktop.Notifications", "notification_daemon", QDBusConnection::SessionBus);
 }
 
