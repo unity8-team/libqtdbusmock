@@ -22,6 +22,7 @@
 #include <libqtdbustest/DBusTestRunner.h>
 #include <libqtdbusmock/MockInterface.h>
 #include <libqtdbusmock/NetworkManagerMockInterface.h>
+#include <libqtdbusmock/NotificationsMockInterface.h>
 #include <libqtdbusmock/OfonoMockInterface.h>
 #include <libqtdbusmock/OfonoModemInterface.h>
 #include <libqtdbusmock/OfonoConnectionManagerInterface.h>

@@ -19,7 +19,8 @@ set(
 	"${CMAKE_CURRENT_BINARY_DIR}/MockInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/PropertiesInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/NetworkManagerMockInterface.h"
-	"${CMAKE_CURRENT_BINARY_DIR}/OfonoMockInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/NotificationsMockInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/OfonoMockInterface.h"
         "${CMAKE_CURRENT_BINARY_DIR}/OfonoModemInterface.h"
         "${CMAKE_CURRENT_BINARY_DIR}/OfonoConnectionManagerInterface.h"
         "${CMAKE_CURRENT_BINARY_DIR}/OfonoSimManagerInterface.h"
@@ -49,6 +50,13 @@ set_source_files_properties(
 	NO_NAMESPACE YES
 	CLASSNAME NetworkManagerMockInterface
 	INCLUDE "libqtdbusmock/ExportInterfaces.h"
+)
+
+set_source_files_properties(
+        "${DATA_DIR}/notifications-mock.xml"
+        PROPERTIES
+        NO_NAMESPACE YES
+        CLASSNAME NotificationsMockInterface
 )
 
 set_source_files_properties(
@@ -102,6 +110,12 @@ qt5_add_dbus_interface(
 	QTDBUSMOCK_SRC
 	"${DATA_DIR}/nm-manager-mock.xml"
 	NetworkManagerMockInterface
+)
+
+qt5_add_dbus_interface(
+        QTDBUSMOCK_SRC
+        "${DATA_DIR}/notifications-mock.xml"
+        NotificationsMockInterface
 )
 
 qt5_add_dbus_interface(
