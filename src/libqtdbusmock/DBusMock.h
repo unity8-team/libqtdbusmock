@@ -62,6 +62,8 @@ public:
 
 	virtual NetworkManagerMockInterface & networkManagerInterface();
 
+	virtual NotificationDaemonMockInterface & notificationDaemonInterface();
+
 	virtual OrgFreedesktopDBusMockInterface & mockInterface(const QString &name,
 			const QString &path, const QString &interface,
 			QDBusConnection::BusType busType);

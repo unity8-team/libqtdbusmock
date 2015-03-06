@@ -35,6 +35,8 @@ public:
 
 	QScopedPointer<NetworkManagerMockInterface> m_networkManagerMock;
 
+	QScopedPointer<NotificationDaemonMockInterface> m_notificationDaemonMock;
+
 	QScopedPointer<OfonoMockInterface> m_ofonoInterface;
 
 	QMap<QString, QSharedPointer<OfonoModemInterface>> m_ofonoModemInterface;
@@ -112,6 +114,16 @@ NetworkManagerMockInterface & DBusMock::networkManagerInterface() {
 						d->m_testRunner.systemConnection()));
 	}
 	return *d->m_networkManagerMock;
+}
+
+NotificationDaemonMockInterface & DBusMock::notificationDaemonInterface() {
+	if (d->m_notificationDaemonMock.isNull()) {
+		d->m_notificationDaemonMock.reset(
+				new NotificationDaemonMockInterface("org.freedesktop.Notifications",
+						"/org/freedesktop/Notifications",
+						d->m_testRunner.sessionConnection()));
+	}
+	return *d->m_notificationDaemonMock;
 }
 
 OfonoMockInterface & DBusMock::ofonoInterface() {
