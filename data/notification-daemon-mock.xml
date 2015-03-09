@@ -28,5 +28,10 @@
       <arg direction="in" name="expire_timeout" type="i"/>
       <arg direction="out" type="u"/>
     </method>
+
+    <signal name="NotificationClosed">
+      <arg direction="out" name="id" type="u"/>
+      <arg direction="out" name="reason" type="u"/>
+    </signal>
   </interface>
 </node>
