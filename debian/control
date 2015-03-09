@@ -9,7 +9,7 @@ Build-Depends: cmake,
                libqtdbustest1-dev,
                network-manager-dev,
                pkg-config,
-               python3-dbusmock,
+               python3-dbusmock (>= 0.14),
                qtbase5-dev,
                valgrind [!arm64 !ppc64el],
 Standards-Version: 3.9.4
