@@ -21,7 +21,6 @@
 			<arg name="rate" type="u" direction="in"/>
 			<arg name="strength" type="y" direction="in"/>
 			<arg name="security" type="u" direction="in"/>
-                        <arg name="flags" type="u" direction="in"/>
 
 			<arg name="path" type="s" direction="out"/>
 		</method>
