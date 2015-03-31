@@ -149,38 +149,38 @@ qt5_add_dbus_interface(
 )
 
 set_source_files_properties(
-	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.xml"
+	"${DATA_DIR}/org.freedesktop.URfkill.xml"
 	PROPERTIES
 	NO_NAMESPACE YES
 )
 
 set_source_files_properties(
-	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.Device.xml"
+	"${DATA_DIR}/org.freedesktop.URfkill.Device.xml"
 	PROPERTIES
 	NO_NAMESPACE YES
 )
 
 set_source_files_properties(
-	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.Killswitch.xml"
+	"${DATA_DIR}/org.freedesktop.URfkill.Killswitch.xml"
 	PROPERTIES
 	NO_NAMESPACE YES
 )
 
 qt5_add_dbus_interface(
 	QTDBUSMOCK_SRC
-	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.xml"
+	"${DATA_DIR}/org.freedesktop.URfkill.xml"
 	URfkillInterface
 )
 
 qt5_add_dbus_interface(
 	QTDBUSMOCK_SRC
-	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.Device.xml"
+	"${DATA_DIR}/org.freedesktop.URfkill.Device.xml"
 	URfkillDeviceInterface
 )
 
 qt5_add_dbus_interface(
 	QTDBUSMOCK_SRC
-	"/usr/share/dbus-1/interfaces/org.freedesktop.URfkill.Killswitch.xml"
+	"${DATA_DIR}/org.freedesktop.URfkill.Killswitch.xml"
 	URfkillKillswitchInterface
 )
 
