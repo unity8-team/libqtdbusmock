@@ -1,8 +1,12 @@
-libqtdbusmock (0.3-0ubuntu1) UNRELEASED; urgency=medium
+libqtdbusmock (0.3+15.04.20150331-0ubuntu1) vivid; urgency=medium
 
+  [ Pete Woods ]
   * Add support for urfkill, ofono and futher network manager support.
 
- -- Pete Woods <pete.woods@canonical.com>  Fri, 06 Mar 2015 15:30:04 +0000
+  [ CI Train Bot ]
+  * debian/libqtdbusmock1.symbols: update to released version.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Tue, 31 Mar 2015 11:22:42 +0000
 
 libqtdbusmock (0.2+14.10.20140730-0ubuntu1) utopic; urgency=medium
 
