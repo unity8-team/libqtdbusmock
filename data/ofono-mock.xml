@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf8'?>
+<node name="/">
+  <interface name="org.freedesktop.DBus.Mock">
+    <method name="AddModem">
+      <arg direction="in" name="name" type="s" />
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QVariantMap"/>
+      <arg direction="in" name="properties" type="a{sv}" />
+      <arg direction="out" type="s" />
+    </method>
+  </interface>
+</node>

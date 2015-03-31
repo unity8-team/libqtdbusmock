@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf8'?>
+<node name="/">
+  <interface name="org.ofono.SimManager">
+    <method name="GetProperties">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QVariantMap"/>
+      <arg direction="out" name="properties" type="a{sv}" />
+    </method>
+
+    <method name="SetProperty">
+      <arg direction="in" name="name" type="s" />
+      <arg direction="in" name="property" type="v" />
+    </method>
+
+    <method name="ChangePin">
+      <arg direction="in" name="type" type="s" />
+      <arg direction="in" name="oldpin" type="s" />
+      <arg direction="in" name="newpin" type="s" />
+    </method>
+
+    <method name="EnterPin">
+      <arg direction="in" name="type" type="s" />
+      <arg direction="in" name="pin" type="s" />
+    </method>
+
+    <method name="ResetPin">
+      <arg direction="in" name="type" type="s" />
+      <arg direction="in" name="puk" type="s" />
+      <arg direction="in" name="newpin" type="s" />
+    </method>
+
+    <method name="LockPin">
+      <arg direction="in" name="type" type="s" />
+      <arg direction="in" name="pin" type="s" />
+    </method>
+
+    <method name="UnlockPin">
+      <arg direction="in" name="type" type="s" />
+      <arg direction="in" name="pin" type="s" />
+    </method>
+
+    <method name="GetIcon">
+      <arg direction="in" name="id" type="y" />
+      <arg direction="out" name="icon" type="ay" />
+    </method>
+
+    <signal name="PropertyChanged">
+      <arg type="s" name="name" />
+      <arg type="v" name="value" />
+    </signal>
+  </interface>
+</node>

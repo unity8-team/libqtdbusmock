@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf8'?>
+<node name="/">
+  <interface name="org.ofono.ConnectionManager">
+    <method name="GetProperties">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QVariantMap"/>
+      <arg direction="out" name="properties" type="a{sv}" />
+    </method>
+
+    <method name="SetProperty">
+      <arg direction="in" name="name" type="s" />
+      <arg direction="in" name="property" type="v" />
+    </method>
+
+    <signal name="PropertyChanged">
+      <arg type="s" name="name" />
+      <arg type="v" name="value" />
+    </signal>
+  </interface>
+</node>

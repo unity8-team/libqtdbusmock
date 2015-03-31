@@ -22,7 +22,15 @@
 #include <libqtdbustest/DBusTestRunner.h>
 #include <libqtdbusmock/MockInterface.h>
 #include <libqtdbusmock/NetworkManagerMockInterface.h>
+#include <libqtdbusmock/NotificationDaemonMockInterface.h>
+#include <libqtdbusmock/OfonoMockInterface.h>
+#include <libqtdbusmock/OfonoModemInterface.h>
+#include <libqtdbusmock/OfonoConnectionManagerInterface.h>
+#include <libqtdbusmock/OfonoSimManagerInterface.h>
+#include <libqtdbusmock/OfonoNetworkRegistrationInterface.h>
 #include <libqtdbusmock/MockInterfaceClasses.h>
+#include <libqtdbusmock/URfkillInterface.h>
+#include <libqtdbusmock/URfkillKillswitchInterface.h>
 
 namespace QtDBusMock {
 
@@ -43,14 +51,36 @@ public:
 
 	virtual void registerNetworkManager();
 
+	virtual void registerNotificationDaemon();
+
+	virtual void registerOfono();
+
+	virtual void registerURfkill();
+
 	virtual void registerCustomMock(const QString &name, const QString &path,
 			const QString &interface, QDBusConnection::BusType);
 
 	virtual NetworkManagerMockInterface & networkManagerInterface();
 
+	virtual NotificationDaemonMockInterface & notificationDaemonInterface();
+
 	virtual OrgFreedesktopDBusMockInterface & mockInterface(const QString &name,
 			const QString &path, const QString &interface,
 			QDBusConnection::BusType busType);
+
+	virtual OfonoMockInterface & ofonoInterface();
+
+	virtual OfonoModemInterface & ofonoModemInterface(const QString &path);
+
+	virtual OfonoSimManagerInterface & ofonoSimManagerInterface(const QString &path);
+
+	virtual OfonoConnectionManagerInterface & ofonoConnectionManagerInterface(const QString &path);
+
+	virtual OfonoNetworkRegistrationInterface & ofonoNetworkRegistrationInterface(const QString &path);
+
+	virtual OrgFreedesktopURfkillInterface & urfkillInterface();
+
+	virtual OrgFreedesktopURfkillKillswitchInterface & urfkillKillswitchInterface(const QString& device);
 
 private:
 	QSharedPointer<DBusMockPrivate> d;

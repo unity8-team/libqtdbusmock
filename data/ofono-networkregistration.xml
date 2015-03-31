@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf8'?>
+<node name="/">
+  <interface name="org.ofono.NetworkRegistration">
+    <method name="GetProperties">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QVariantMap"/>
+      <arg direction="out" name="properties" type="a{sv}" />
+    </method>
+
+    <method name="SetProperty">
+      <arg direction="in" name="name" type="s" />
+      <arg direction="in" name="property" type="v" />
+    </method>
+
+    <method name="Register">
+    </method>
+
+    <method name="GetOperators">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QVector&lt;QPair&lt;QDBusObjectPath, QVariantMap>>"/>
+      <arg direction="out" name="operators_with_properties" type="a(oa{sv})" />
+    </method>
+
+    <method name="Scan">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QVector&lt;QPair&lt;QDBusObjectPath, QVariantMap>>"/>
+      <arg direction="out" name="operators_with_properties" type="a(oa{sv})" />
+    </method>
+
+    <signal name="PropertyChanged">
+      <arg type="s" name="name" />
+      <arg type="v" name="value" />
+    </signal>
+  </interface>
+</node>

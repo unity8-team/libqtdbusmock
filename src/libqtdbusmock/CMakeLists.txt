@@ -19,6 +19,15 @@ set(
 	"${CMAKE_CURRENT_BINARY_DIR}/MockInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/PropertiesInterface.h"
 	"${CMAKE_CURRENT_BINARY_DIR}/NetworkManagerMockInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/NotificationDaemonMockInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/OfonoMockInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/OfonoModemInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/OfonoConnectionManagerInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/OfonoSimManagerInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/OfonoNetworkRegistrationInterface.h"
+        "${CMAKE_CURRENT_BINARY_DIR}/URfkillInterface.h"
+	"${CMAKE_CURRENT_BINARY_DIR}/URfkillDeviceInterface.h"
+	"${CMAKE_CURRENT_BINARY_DIR}/URfkillKillswitchInterface.h"
 )
 
 set_source_files_properties(
@@ -43,6 +52,48 @@ set_source_files_properties(
 	INCLUDE "libqtdbusmock/ExportInterfaces.h"
 )
 
+set_source_files_properties(
+        "${DATA_DIR}/notification-daemon-mock.xml"
+        PROPERTIES
+        NO_NAMESPACE YES
+        CLASSNAME NotificationDaemonMockInterface
+)
+
+set_source_files_properties(
+	"${DATA_DIR}/ofono-mock.xml"
+	PROPERTIES
+	NO_NAMESPACE YES
+	CLASSNAME OfonoMockInterface
+)
+
+set_source_files_properties(
+        "${DATA_DIR}/ofono-modem-mock.xml"
+        PROPERTIES
+        NO_NAMESPACE YES
+        CLASSNAME OfonoModemInterface
+)
+
+set_source_files_properties(
+        "${DATA_DIR}/ofono-simmanager.xml"
+        PROPERTIES
+        NO_NAMESPACE YES
+        CLASSNAME OfonoSimManagerInterface
+)
+
+set_source_files_properties(
+        "${DATA_DIR}/ofono-connectionmanager.xml"
+        PROPERTIES
+        NO_NAMESPACE YES
+        CLASSNAME OfonoConnectionManagerInterface
+)
+
+set_source_files_properties(
+        "${DATA_DIR}/ofono-networkregistration.xml"
+        PROPERTIES
+        NO_NAMESPACE YES
+        CLASSNAME OfonoNetworkRegistrationInterface
+)
+
 qt5_add_dbus_interface(
 	QTDBUSMOCK_SRC
 	"${DATA_DIR}/org.freedesktop.DBus.Mock.xml"
@@ -59,6 +110,78 @@ qt5_add_dbus_interface(
 	QTDBUSMOCK_SRC
 	"${DATA_DIR}/nm-manager-mock.xml"
 	NetworkManagerMockInterface
+)
+
+qt5_add_dbus_interface(
+        QTDBUSMOCK_SRC
+        "${DATA_DIR}/notification-daemon-mock.xml"
+        NotificationDaemonMockInterface
+)
+
+qt5_add_dbus_interface(
+	QTDBUSMOCK_SRC
+	"${DATA_DIR}/ofono-mock.xml"
+	OfonoMockInterface
+)
+
+qt5_add_dbus_interface(
+        QTDBUSMOCK_SRC
+        "${DATA_DIR}/ofono-modem-mock.xml"
+        OfonoModemInterface
+)
+
+qt5_add_dbus_interface(
+        QTDBUSMOCK_SRC
+        "${DATA_DIR}/ofono-connectionmanager.xml"
+        OfonoConnectionManagerInterface
+)
+
+qt5_add_dbus_interface(
+        QTDBUSMOCK_SRC
+        "${DATA_DIR}/ofono-simmanager.xml"
+        OfonoSimManagerInterface
+)
+
+qt5_add_dbus_interface(
+        QTDBUSMOCK_SRC
+        "${DATA_DIR}/ofono-networkregistration.xml"
+        OfonoNetworkRegistrationInterface
+)
+
+set_source_files_properties(
+	"${DATA_DIR}/org.freedesktop.URfkill.xml"
+	PROPERTIES
+	NO_NAMESPACE YES
+)
+
+set_source_files_properties(
+	"${DATA_DIR}/org.freedesktop.URfkill.Device.xml"
+	PROPERTIES
+	NO_NAMESPACE YES
+)
+
+set_source_files_properties(
+	"${DATA_DIR}/org.freedesktop.URfkill.Killswitch.xml"
+	PROPERTIES
+	NO_NAMESPACE YES
+)
+
+qt5_add_dbus_interface(
+	QTDBUSMOCK_SRC
+	"${DATA_DIR}/org.freedesktop.URfkill.xml"
+	URfkillInterface
+)
+
+qt5_add_dbus_interface(
+	QTDBUSMOCK_SRC
+	"${DATA_DIR}/org.freedesktop.URfkill.Device.xml"
+	URfkillDeviceInterface
+)
+
+qt5_add_dbus_interface(
+	QTDBUSMOCK_SRC
+	"${DATA_DIR}/org.freedesktop.URfkill.Killswitch.xml"
+	URfkillKillswitchInterface
 )
 
 add_library(
