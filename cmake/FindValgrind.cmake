@@ -16,6 +16,7 @@ if(VALGRIND_PROGRAM)
 		"--error-exitcode=1"
 		"--leak-check=full"
 		"--gen-suppressions=all"
+                "--show-leak-kinds=definite"
 		"--quiet"
 	)
 endif()
