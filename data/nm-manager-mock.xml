@@ -3,6 +3,13 @@
 <node name="/org/freedesktop/NetworkManager" xmlns:tp="http://telepathy.freedesktop.org/wiki/DbusSpec#extensions-v0">
 	<interface name="org.freedesktop.DBus.Mock">
 
+		<method name="AddEthernetDevice">
+			<arg direction="in" name="device_name" type="s" />
+			<arg direction="in" name="iface_name" type="s" />
+			<arg direction="in" name="state" type="i" />
+			<arg direction="out" type="s" />
+		</method>
+
 		<method name="AddWiFiDevice">
 			<arg name="device_name" type="s" direction="in"/>
 			<arg name="interface_name" type="s" direction="in"/>
@@ -47,6 +54,14 @@
 		<method name="SetDeviceActive">
 			<arg name="device_path" type="s" direction="in"/>
 			<arg name="connection_path" type="s" direction="in"/>
+		</method>
+
+		<method name="SetConnectivity">
+			<arg direction="in" name="connectivity" type="u" />
+		</method>
+
+		<method name="SetDeviceDisconnected">
+			<arg direction="in" name="device_path" type="s" />
 		</method>
 
 		<method name="SetGlobalConnectionState">
