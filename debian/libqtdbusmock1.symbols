@@ -67,9 +67,9 @@ libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
  (c++)"NetworkManagerMockInterface::AddActiveConnection(QStringList const&, QString const&, QString const&, QString const&, unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
  (c++)"NetworkManagerMockInterface::RemoveWifiConnection(QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
  (c++)"NetworkManagerMockInterface::RemoveActiveConnection(QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
- (c++)"NetworkManagerMockInterface::SetConnectivity(unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
- (c++)"NetworkManagerMockInterface::AddEthernetDevice(QString const&, QString const&, int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
- (c++)"NetworkManagerMockInterface::SetDeviceDisconnected(QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
+ (c++)"NetworkManagerMockInterface::SetConnectivity(unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.4+15.10.20151006.3
+ (c++)"NetworkManagerMockInterface::AddEthernetDevice(QString const&, QString const&, int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.4+15.10.20151006.3
+ (c++)"NetworkManagerMockInterface::SetDeviceDisconnected(QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.4+15.10.20151006.3
  (c++)"NetworkManagerMockInterface::SetGlobalConnectionState(unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
  (c++)"NetworkManagerMockInterface::SetProperty(QString const&, QString const&, QString const&, QDBusVariant const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
  (c++)"OrgFreedesktopDBusMockInterface::qt_metacall(QMetaObject::Call, int, void**)@Base" 0.1

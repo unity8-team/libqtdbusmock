@@ -1,10 +1,14 @@
-libqtdbusmock (0.4-0ubuntu1) UNRELEASED; urgency=medium
+libqtdbusmock (0.4+15.10.20151006.3-0ubuntu1) wily; urgency=medium
 
   [ Pete Woods ]
   * Add new methods to NetworkManager mock interface.
   * Don't run valgrind by default. (LP: #1451507)
 
- -- Pete Woods <pete.woods@canonical.com>  Tue, 15 Sep 2015 10:48:13 +0100
+  [ CI Train Bot ]
+  * debian/libqtdbusmock1.symbols: update to released version.
+  * No-change rebuild.
+
+ -- Pete Woods <ci-train-bot@canonical.com>  Tue, 06 Oct 2015 11:47:54 +0000
 
 libqtdbusmock (0.3+15.10.20150604-0ubuntu1) wily; urgency=medium
 
