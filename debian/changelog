@@ -2,6 +2,7 @@ libqtdbusmock (0.4-0ubuntu1) UNRELEASED; urgency=medium
 
   [ Pete Woods ]
   * Add new methods to NetworkManager mock interface.
+  * Don't run valgrind by default. (LP: #1451507)
 
  -- Pete Woods <pete.woods@canonical.com>  Tue, 15 Sep 2015 10:48:13 +0100
 
