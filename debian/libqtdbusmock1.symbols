@@ -39,18 +39,18 @@ libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
  (c++)"QtDBusMock::DBusMock::registerNotificationDaemon()@Base" 0.3+15.04.20150331
  (c++)"QtDBusMock::DBusMock::registerOfono()@Base" 0.3+15.04.20150331
  (c++)"QtDBusMock::DBusMock::registerURfkill()@Base" 0.3+15.04.20150331
- (c++)"QtDBusMock::DBusMock::registerOfono(QMap<QString, QVariant> const&)@Base" 0replaceme
- (c++)"QtDBusMock::DBusMock::registerBluez4(QMap<QString, QVariant> const&)@Base" 0replaceme
- (c++)"QtDBusMock::DBusMock::registerBluez5(QMap<QString, QVariant> const&)@Base" 0replaceme
- (c++)"QtDBusMock::DBusMock::registerLogind(QMap<QString, QVariant> const&)@Base" 0replaceme
- (c++)"QtDBusMock::DBusMock::registerUpower(QMap<QString, QVariant> const&)@Base" 0replaceme
- (c++)"QtDBusMock::DBusMock::registerURfkill(QMap<QString, QVariant> const&)@Base" 0replaceme
- (c++)"QtDBusMock::DBusMock::registerTemplate(QString const&, QString const&, QMap<QString, QVariant> const&, QDBusConnection::BusType)@Base" 0replaceme
- (c++)"QtDBusMock::DBusMock::registerTimeDate(QMap<QString, QVariant> const&)@Base" 0replaceme
- (c++)"QtDBusMock::DBusMock::registerPolicyKit(QMap<QString, QVariant> const&)@Base" 0replaceme
- (c++)"QtDBusMock::DBusMock::registerNetworkManager(QMap<QString, QVariant> const&)@Base" 0replaceme
- (c++)"QtDBusMock::DBusMock::registerGnomeScreensaver(QMap<QString, QVariant> const&)@Base" 0replaceme
- (c++)"QtDBusMock::DBusMock::registerNotificationDaemon(QMap<QString, QVariant> const&)@Base" 0replaceme
+ (c++)"QtDBusMock::DBusMock::registerOfono(QMap<QString, QVariant> const&)@Base" 0.5+15.10.20151009
+ (c++)"QtDBusMock::DBusMock::registerBluez4(QMap<QString, QVariant> const&)@Base" 0.5+15.10.20151009
+ (c++)"QtDBusMock::DBusMock::registerBluez5(QMap<QString, QVariant> const&)@Base" 0.5+15.10.20151009
+ (c++)"QtDBusMock::DBusMock::registerLogind(QMap<QString, QVariant> const&)@Base" 0.5+15.10.20151009
+ (c++)"QtDBusMock::DBusMock::registerUpower(QMap<QString, QVariant> const&)@Base" 0.5+15.10.20151009
+ (c++)"QtDBusMock::DBusMock::registerURfkill(QMap<QString, QVariant> const&)@Base" 0.5+15.10.20151009
+ (c++)"QtDBusMock::DBusMock::registerTemplate(QString const&, QString const&, QMap<QString, QVariant> const&, QDBusConnection::BusType)@Base" 0.5+15.10.20151009
+ (c++)"QtDBusMock::DBusMock::registerTimeDate(QMap<QString, QVariant> const&)@Base" 0.5+15.10.20151009
+ (c++)"QtDBusMock::DBusMock::registerPolicyKit(QMap<QString, QVariant> const&)@Base" 0.5+15.10.20151009
+ (c++)"QtDBusMock::DBusMock::registerNetworkManager(QMap<QString, QVariant> const&)@Base" 0.5+15.10.20151009
+ (c++)"QtDBusMock::DBusMock::registerGnomeScreensaver(QMap<QString, QVariant> const&)@Base" 0.5+15.10.20151009
+ (c++)"QtDBusMock::DBusMock::registerNotificationDaemon(QMap<QString, QVariant> const&)@Base" 0.5+15.10.20151009
  (c++)"QtDBusMock::DBusMock::registerTemplate(QString const&, QString const&, QDBusConnection::BusType)@Base" 0.2+14.10.20140730-0ubuntu1
  (c++)"QtDBusMock::DBusMock::networkManagerInterface()@Base" 0.1
  (c++)"QtDBusMock::DBusMock::notificationDaemonInterface()@Base" 0.3+15.04.20150331

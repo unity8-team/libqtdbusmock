@@ -1,11 +1,16 @@
-libqtdbusmock (0.5-0ubuntu1) UNRELEASED; urgency=medium
+libqtdbusmock (0.5+15.10.20151009-0ubuntu1) wily; urgency=medium
 
+  [ Pete Woods ]
   * Enable the passing of parameters to templates.
   * Add methods for all templates from dbusmock.
   * Fix version number of registerTemplate symbol (marked 0changeme).
   * Depend on python-dbusmock >= 0.16
 
- -- Pete Woods <pete.woods@canonical.com>  Fri, 09 Oct 2015 11:54:18 +0100
+  [ CI Train Bot ]
+  * debian/libqtdbusmock1.symbols: update to released version.
+  * No-change rebuild.
+
+ -- Pete Woods <ci-train-bot@canonical.com>  Fri, 09 Oct 2015 11:12:09 +0000
 
 libqtdbusmock (0.4+15.10.20151006.3-0ubuntu1) wily; urgency=medium
 
