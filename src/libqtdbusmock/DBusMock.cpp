@@ -20,6 +20,7 @@
 #include <libqtdbustest/QProcessDBusService.h>
 
 #include <NetworkManager.h>
+#include <QJsonDocument>
 
 using namespace QtDBusTest;
 
@@ -70,28 +71,99 @@ void DBusMock::registerMetaTypes() {
 void DBusMock::registerTemplate(const QString &service,
                                 const QString &templateName,
                                 QDBusConnection::BusType busType) {
+	registerTemplate(service, templateName, QVariantMap(), busType);
+}
+
+
+void DBusMock::registerTemplate(const QString &service,
+                              const QString &templateName,
+                              const QVariantMap& parameters,
+                              QDBusConnection::BusType busType) {
+	QStringList arguments;
+	arguments << "-m" << "dbusmock";
+	arguments << "--template" << templateName;
+
+	if (!parameters.isEmpty())
+	{
+		auto doc = QJsonDocument::fromVariant(parameters);
+		arguments << "--parameters" << QString::fromUtf8(doc.toJson(QJsonDocument::Compact));
+	}
+
 	d->m_testRunner.registerService(
 			DBusServicePtr(
-					new QProcessDBusService(service,
-							busType, "python3",
-							QStringList() << "-m" << "dbusmock" << "--template"
-									<< templateName)));
+					new QProcessDBusService(service, busType, "python3",
+							arguments)));
+}
+
+void DBusMock::registerBluez5(const QVariantMap& parameters) {
+	registerTemplate("org.bluez", "bluez5", parameters,
+			QDBusConnection::SystemBus);
+}
+
+void DBusMock::registerBluez4(const QVariantMap& parameters) {
+	registerTemplate("org.bluez", "bluez4", parameters,
+			QDBusConnection::SystemBus);
+}
+
+void DBusMock::registerGnomeScreensaver(const QVariantMap& parameters) {
+	registerTemplate("org.gnome.ScreenSaver", "gnome_screensaver", parameters,
+			QDBusConnection::SessionBus);
+}
+
+void DBusMock::registerLogind(const QVariantMap& parameters) {
+	registerTemplate("org.freedesktop.login1", "logind", parameters,
+			QDBusConnection::SystemBus);
 }
 
 void DBusMock::registerNetworkManager() {
-	registerTemplate(NM_DBUS_SERVICE, "networkmanager", QDBusConnection::SystemBus);
+	registerNetworkManager(QVariantMap());
+}
+
+void DBusMock::registerNetworkManager(const QVariantMap& parameters) {
+	registerTemplate(NM_DBUS_SERVICE, "networkmanager", parameters,
+			QDBusConnection::SystemBus);
 }
 
 void DBusMock::registerNotificationDaemon() {
-	registerTemplate("org.freedesktop.Notifications", "notification_daemon", QDBusConnection::SessionBus);
+	registerNotificationDaemon(QVariantMap());
+}
+
+void DBusMock::registerNotificationDaemon(const QVariantMap& parameters) {
+	registerTemplate("org.freedesktop.Notifications", "notification_daemon",
+			parameters, QDBusConnection::SessionBus);
 }
 
 void DBusMock::registerOfono() {
-	registerTemplate("org.ofono", "ofono", QDBusConnection::SystemBus);
+	registerOfono(QVariantMap());
+}
+
+void DBusMock::registerOfono(const QVariantMap& parameters) {
+	registerTemplate("org.ofono", "ofono", parameters,
+			QDBusConnection::SystemBus);
+}
+
+void DBusMock::registerPolicyKit(const QVariantMap& parameters) {
+	registerTemplate("org.freedesktop.PolicyKit1", "polkitd", parameters,
+			QDBusConnection::SystemBus);
+}
+
+void DBusMock::registerTimeDate(const QVariantMap& parameters) {
+	registerTemplate("org.freedesktop.timedate1", "timedated", parameters,
+			QDBusConnection::SystemBus);
 }
 
 void DBusMock::registerURfkill() {
-	registerTemplate("org.freedesktop.URfkill", "urfkill", QDBusConnection::SystemBus);
+	registerURfkill(QVariantMap());
+}
+
+void DBusMock::registerUpower(const QVariantMap& parameters) {
+	registerTemplate("org.freedesktop.UPower", "upower", parameters,
+			QDBusConnection::SystemBus);
+}
+
+void DBusMock::registerURfkill(const QVariantMap& parameters) {
+	registerTemplate("org.freedesktop.URfkill", "urfkill", parameters,
+			QDBusConnection::SystemBus);
 }
 
 void DBusMock::registerCustomMock(const QString &name, const QString &path,

@@ -49,13 +49,40 @@ public:
 	                              const QString &templateName,
 	                              QDBusConnection::BusType busType);
 
+	virtual void registerTemplate(const QString &service,
+	                              const QString &templateName,
+	                              const QVariantMap& parameters,
+	                              QDBusConnection::BusType busType);
+
+	virtual void registerBluez4(const QVariantMap& parameters = QVariantMap());
+
+	virtual void registerBluez5(const QVariantMap& parameters = QVariantMap());
+
+	virtual void registerGnomeScreensaver(const QVariantMap& parameters = QVariantMap());
+
+	virtual void registerLogind(const QVariantMap& parameters = QVariantMap());
+
 	virtual void registerNetworkManager();
+
+	virtual void registerNetworkManager(const QVariantMap& parameters);
 
 	virtual void registerNotificationDaemon();
 
+	virtual void registerNotificationDaemon(const QVariantMap& parameters);
+
 	virtual void registerOfono();
 
+	virtual void registerOfono(const QVariantMap& parameters);
+
+	virtual void registerPolicyKit(const QVariantMap& parameters = QVariantMap());
+
+	virtual void registerTimeDate(const QVariantMap& parameters = QVariantMap());
+
 	virtual void registerURfkill();
+
+	virtual void registerURfkill(const QVariantMap& parameters);
+
+	virtual void registerUpower(const QVariantMap& parameters = QVariantMap());
 
 	virtual void registerCustomMock(const QString &name, const QString &path,
 			const QString &interface, QDBusConnection::BusType);

@@ -9,7 +9,7 @@ Build-Depends: cmake,
                libqtdbustest1-dev,
                network-manager-dev,
                pkg-config,
-               python3-dbusmock (>= 0.14),
+               python3-dbusmock (>= 0.16),
                qtbase5-dev,
 Standards-Version: 3.9.4
 Homepage: https://launchpad.net/libqtdbustest
@@ -22,7 +22,7 @@ Section: libs
 Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends},
-Depends: python3-dbusmock,
+Depends: python3-dbusmock (>= 0.16),
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Library for mocking DBus interactions using Qt
