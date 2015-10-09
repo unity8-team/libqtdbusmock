@@ -101,6 +101,21 @@ TEST_F(TestDBusMock, StartsDBusMockWithNM) {
 	ASSERT_EQ(1, devices.value().size());
 }
 
+TEST_F(TestDBusMock, StartsDBusMockTemplateParameters) {
+	dbusMock.registerUpower({{"DaemonVersion", "0.99.0"}, {"OnBattery", true}});
+	dbusTestRunner.startServices();
+
+	EXPECT_TRUE(
+			processListContains(
+					"python3 -m dbusmock --template upower --parameters {\"DaemonVersion\":\"0.99.0\",\"OnBattery\":true}"));
+
+	QDBusInterface iface("org.freedesktop.UPower", "/org/freedesktop/UPower",
+			"org.freedesktop.UPower", dbusTestRunner.systemConnection());
+
+	EXPECT_EQ("0.99.0", iface.property("DaemonVersion").toString());
+	EXPECT_TRUE(iface.property("OnBattery").toBool());
+}
+
 TEST_F(TestDBusMock, StartsDBusMockWithTemplate) {
 	dbusMock.registerTemplate(NM_DBUS_SERVICE,
                                   "networkmanager",
