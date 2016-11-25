@@ -16,8 +16,7 @@
  * Author: Pete Woods <pete.woods@canonical.com>
  */
 
-#ifndef LIBQTDBUSMOCK_METHODCALLS_H_
-#define LIBQTDBUSMOCK_METHODCALLS_H_
+#pragma once
 
 #include <QtDBus>
 
@@ -60,5 +59,3 @@ const QDBusArgument &operator>>(const QDBusArgument &argument,
 		QtDBusMock::MethodCall &methodCalls);
 
 Q_DECLARE_METATYPE(QtDBusMock::MethodCall)
-
-#endif // LIBQTDBUSMOCK_METHODCALLS_H_

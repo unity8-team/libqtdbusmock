@@ -1,3 +1,9 @@
+libqtdbusmock (0.6-0ubuntu1) UNRELEASED; urgency=medium
+
+  * Add AddConnection method to network manager mock interface.
+
+ -- Pete <pete.woods@canonical.com>  Fri, 25 Nov 2016 10:33:33 +0000
+
 libqtdbusmock (0.5+15.10.20151009-0ubuntu1) wily; urgency=medium
 
   [ Pete Woods ]

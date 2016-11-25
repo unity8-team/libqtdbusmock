@@ -16,16 +16,19 @@
  * Author: Pete Woods <pete.woods@canonical.com>
  */
 
-#ifndef LIBQTDBUSMOCK_EXPORTINTERFACES_H_
-#define LIBQTDBUSMOCK_EXPORTINTERFACES_H_
+#pragma once
 
 #include <QtCore/QObject>
 class Q_DECL_EXPORT OrgFreedesktopDBusMockInterface;
 class Q_DECL_EXPORT NetworkManagerMockInterface;
 class Q_DECL_EXPORT OrgFreedesktopDBusPropertiesInterface;
 
+namespace QtDBusMock {
+
+typedef QMap<QString, QVariantMap> VariantDictMap;
+
+}
+
 #include <libqtdbusmock/MockInterface.h>
 #include <libqtdbusmock/NetworkManagerMockInterface.h>
 #include <libqtdbusmock/PropertiesInterface.h>
-
-#endif /* LIBQTDBUSMOCK_EXPORTINTERFACES_H_ */

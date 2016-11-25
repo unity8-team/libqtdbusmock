@@ -18,9 +18,7 @@
 
 #pragma once
 
-#include <libqtdbusmock/ExportInterfaces.h>
+#include <QtCore/QObject>
+#include <QtCore/QVariantMap>
 
-#include <libqtdbusmock/Method.h>
-#include <libqtdbusmock/MethodCall.h>
-#include <libqtdbusmock/NamedMethodCall.h>
-
+Q_DECLARE_METATYPE(QMap<QString,QVariantMap>)
