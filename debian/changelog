@@ -1,6 +1,8 @@
 libqtdbusmock (0.6-0ubuntu1) UNRELEASED; urgency=medium
 
-  * Add AddConnection method to network manager mock interface.
+  * Add AddDeviceConnection, SettingsAddConnection methods to network manager mock interface.
+  * Switch to cmake-extras version of FindGMock.
+  * CHange to pragma once for header guard macros.
 
  -- Pete <pete.woods@canonical.com>  Fri, 25 Nov 2016 10:33:33 +0000
 
