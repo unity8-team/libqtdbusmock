@@ -75,7 +75,7 @@ libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
  (c++)"NetworkManagerMockInterface::AddAccessPoint(QString const&, QString const&, QString const&, QString const&, unsigned int, unsigned int, unsigned int, unsigned char, unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
  (c++)"NetworkManagerMockInterface::SetDeviceActive(QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
  (c++)"NetworkManagerMockInterface::AddWiFiConnection(QString const&, QString const&, QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
- (c++)"NetworkManagerMockInterface::AddDeviceConnection(QString const&, QMap<QString, QMap<QString, QVariant> > const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
+ (c++)"NetworkManagerMockInterface::AddDeviceConnection(QString const&, QMap<QString, QMap<QString, QVariant> > const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.6+17.04.20161202-0ubuntu1
  (c++)"NetworkManagerMockInterface::RemoveAccessPoint(QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
  (c++)"NetworkManagerMockInterface::AddActiveConnection(QStringList const&, QString const&, QString const&, QString const&, unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
  (c++)"NetworkManagerMockInterface::RemoveWifiConnection(QString const&, QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
@@ -85,7 +85,7 @@ libqtdbusmock.so.1 libqtdbusmock1 #MINVER#
  (c++)"NetworkManagerMockInterface::SetDeviceDisconnected(QString const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.4+15.10.20151006.3
  (c++)"NetworkManagerMockInterface::SetGlobalConnectionState(unsigned int)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
  (c++)"NetworkManagerMockInterface::SetProperty(QString const&, QString const&, QString const&, QDBusVariant const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.3+15.04.20150331
- (c++)"NetworkManagerMockInterface::SettingsAddConnection(QMap<QString, QMap<QString, QVariant> > const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0replaceme
+ (c++)"NetworkManagerMockInterface::SettingsAddConnection(QMap<QString, QMap<QString, QVariant> > const&)::{lambda()#1}::operator()() const::qstring_literal@Base" 0.6+17.04.20161202-0ubuntu1
  (c++)"OrgFreedesktopDBusMockInterface::qt_metacall(QMetaObject::Call, int, void**)@Base" 0.1
  (c++)"OrgFreedesktopDBusMockInterface::qt_metacast(char const*)@Base" 0.1
  (c++)"OrgFreedesktopDBusMockInterface::MethodCalled(QString const&, QList<QVariant> const&)@Base" 0.1
