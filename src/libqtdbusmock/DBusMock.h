@@ -16,8 +16,7 @@
  * Author: Pete Woods <pete.woods@canonical.com>
  */
 
-#ifndef QTDBUSMOCK_DBUSMOCK_H_
-#define QTDBUSMOCK_DBUSMOCK_H_
+#pragma once
 
 #include <libqtdbustest/DBusTestRunner.h>
 #include <libqtdbusmock/MockInterface.h>
@@ -114,5 +113,3 @@ private:
 };
 
 }
-
-#endif /* QTDBUSMOCK_DBUSMOCK_H_ */
