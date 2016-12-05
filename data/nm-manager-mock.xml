@@ -41,6 +41,14 @@
 			<arg name="path" type="s" direction="out"/>
 		</method>
 
+		<method name="AddDeviceConnection">
+			<arg name="device_name" type="s" direction="in"/>
+			<annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QtDBusMock::VariantDictMap"/>
+			<arg name="settings" type="a{sa{sv}}" direction="in"/>
+
+			<arg name="path" type="s" direction="out"/>
+		</method>
+
 		<method name="AddActiveConnection">
 			<arg name="devices" type="as" direction="in"/>
 			<arg name="connection_device" type="s" direction="in"/>
@@ -73,6 +81,13 @@
 			<arg name="iface" type="s" direction="in"/>
 			<arg name="name" type="s" direction="in"/>
 			<arg name="value" type="v" direction="in"/>
+		</method>
+		
+		<method name="SettingsAddConnection">
+			<annotation name="org.qtproject.QtDBus.QtTypeName.In0" value="QtDBusMock::VariantDictMap"/>
+			<arg name="settings" type="a{sa{sv}}" direction="in"/>
+
+			<arg name="path" type="s" direction="out"/>
 		</method>
 
 		<method name="RemoveWifiConnection">
