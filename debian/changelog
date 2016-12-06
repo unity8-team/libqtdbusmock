@@ -1,10 +1,11 @@
-libqtdbusmock (0.6-0ubuntu1) UNRELEASED; urgency=medium
+libqtdbusmock (0.6+17.04.20161206-0ubuntu1) zesty; urgency=medium
 
+  [ Pete ]
   * Add AddDeviceConnection, SettingsAddConnection methods to network manager mock interface.
   * Switch to cmake-extras version of FindGMock.
   * CHange to pragma once for header guard macros.
 
- -- Pete <pete.woods@canonical.com>  Fri, 25 Nov 2016 10:33:33 +0000
+ -- Pete Woods <pete.woods@canonical.com>  Tue, 06 Dec 2016 12:09:08 +0000
 
 libqtdbusmock (0.5+15.10.20151009-0ubuntu1) wily; urgency=medium
 
