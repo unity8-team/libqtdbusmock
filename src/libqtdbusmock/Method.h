@@ -16,8 +16,7 @@
  * Author: Pete Woods <pete.woods@canonical.com>
  */
 
-#ifndef LIBQTDBUSMOCK_METHOD_H_
-#define LIBQTDBUSMOCK_METHOD_H_
+#pragma once
 
 #include <QtDBus>
 
@@ -72,5 +71,3 @@ const QDBusArgument &operator>>(const QDBusArgument &argument,
 		QtDBusMock::Method &method);
 
 Q_DECLARE_METATYPE(QtDBusMock::Method)
-
-#endif // LIBQTDBUSMOCK_METHOD_H_
