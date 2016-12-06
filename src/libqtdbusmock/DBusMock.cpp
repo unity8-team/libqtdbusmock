@@ -66,6 +66,9 @@ void DBusMock::registerMetaTypes() {
 	Method::registerMetaType();
 	MethodCall::registerMetaType();
 	NamedMethodCall::registerMetaType();
+
+    qRegisterMetaType<VariantDictMap>("QtDBusMock::VariantDictMap");
+    qDBusRegisterMetaType<VariantDictMap>();
 }
 
 void DBusMock::registerTemplate(const QString &service,

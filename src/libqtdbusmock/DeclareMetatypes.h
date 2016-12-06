@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Canonical, Ltd.
+ * Copyright (C) 2016 Canonical, Ltd.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of version 3 of the GNU Lesser General Public License as published
@@ -18,9 +18,7 @@
 
 #pragma once
 
-#include <libqtdbusmock/ExportInterfaces.h>
+#include <QtCore/QObject>
+#include <QtCore/QVariantMap>
 
-#include <libqtdbusmock/Method.h>
-#include <libqtdbusmock/MethodCall.h>
-#include <libqtdbusmock/NamedMethodCall.h>
-
+Q_DECLARE_METATYPE(QMap<QString,QVariantMap>)
