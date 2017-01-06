@@ -35,7 +35,6 @@ include_directories(${SOURCE_DIR})
 include_directories(${SOURCE_BINARY_DIR})
 
 include(GNUInstallDirs)
-include(Coverage)
 
 # Workaround for libexecdir on debian
 if (EXISTS "/etc/debian_version") 
@@ -68,3 +67,16 @@ ADD_CUSTOM_TARGET(
 	check
 	${CMAKE_CTEST_COMMAND} --force-new-ctest-process --output-on-failure
 )
+
+find_package(CoverageReport)
+enable_coverage_report(
+  TARGETS
+    qtdbusmock
+    unit-tests
+  FILTER
+    ${CMAKE_SOURCE_DIR}/tests/*
+    ${CMAKE_BINARY_DIR}/*
+  TESTS
+    unit-tests
+)
+

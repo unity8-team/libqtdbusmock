@@ -3,8 +3,6 @@ set(CMAKE_AUTOMOC OFF)
 find_package(GMock REQUIRED)
 set(CMAKE_AUTOMOC ON)
 
-find_package("Valgrind" REQUIRED)
-
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${GMOCK_INCLUDE_DIRS})
 include_directories(${GTEST_INCLUDE_DIRS})
@@ -35,7 +33,7 @@ target_link_libraries(
 	${GMOCK_LIBRARIES}
 )
 
-add_valgrind_test(
+add_test(
 	unit-tests
 	unit-tests
 )
