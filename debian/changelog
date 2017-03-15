@@ -1,3 +1,10 @@
+libqtdbusmock (0.7-0ubuntu1) UNRELEASED; urgency=medium
+
+  * Add hostname1 and login1 templates to new -common package.
+  * Search /usr/share/libqtdbusmock/templates for templates.
+
+ -- Pete <pete.woods@canonical.com>  Wed, 15 Mar 2017 18:17:19 +0000
+
 libqtdbusmock (0.6+17.04.20170106-0ubuntu1) zesty; urgency=medium
 
   * Compatibility with unversioned cmake-extras modules (LP: #1563573)
