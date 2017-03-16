@@ -20,8 +20,8 @@
 #include <libqtdbustest/QProcessDBusService.h>
 
 #include <NetworkManager.h>
-#include <QJsonDocument>
 #include <QFile>
+#include <QJsonDocument>
 #include <QStandardPaths>
 
 using namespace QtDBusTest;
