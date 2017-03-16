@@ -1,6 +1,7 @@
 libqtdbusmock (0.7-0ubuntu1) UNRELEASED; urgency=medium
 
-  * Add hostname1 and login1 templates to new -common package.
+  * Add hostname1 and login1 templates to new binary package
+    libqtdbusmock1-common.
   * Search /usr/share/libqtdbusmock/templates for templates.
 
  -- Pete <pete.woods@canonical.com>  Wed, 15 Mar 2017 18:17:19 +0000
