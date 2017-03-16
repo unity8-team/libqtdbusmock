@@ -47,7 +47,6 @@ def load(mock, parameters):
         'IdleHint': parameters.get('IdleHint', False),
         'IdleSinceHint': parameters.get('IdleSinceHint', dbus.UInt64(1489580452083866)),
         'IdleSinceHintMonotonic': parameters.get('IdleSinceHintMonotonic', dbus.UInt64(8134597164)),
-        'IdleSinceHintMonotonic': parameters.get('IdleSinceHintMonotonic', dbus.UInt64(8134597164)),
         'BlockInhibited': parameters.get('BlockInhibited', 'handle-power-key:handle-suspend-key:handle-hibernate-key:handle-lid-switch'),
         'DelayInhibited': parameters.get('DelayInhibited', 'sleep'),
         'InhibitDelayMaxUSec': parameters.get('InhibitDelayMaxUSec', dbus.UInt64(5000000)),
