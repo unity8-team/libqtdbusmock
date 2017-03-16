@@ -20,7 +20,9 @@
 #include <libqtdbustest/QProcessDBusService.h>
 
 #include <NetworkManager.h>
+#include <QFile>
 #include <QJsonDocument>
+#include <QStandardPaths>
 
 using namespace QtDBusTest;
 
@@ -84,7 +86,22 @@ void DBusMock::registerTemplate(const QString &service,
                               QDBusConnection::BusType busType) {
 	QStringList arguments;
 	arguments << "-m" << "dbusmock";
-	arguments << "--template" << templateName;
+
+	bool found = false;
+	if (!templateName.contains(QDir::separator())) {
+		auto dirs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+		for (const auto & dir : dirs) {
+			auto path = QDir(QDir(QDir(dir).filePath("libqtdbusmock")).filePath("templates")).filePath(templateName + ".py");
+			if (QFileInfo::exists(path)) {
+				arguments << "--template" << path;
+				found = true;
+				break;
+			}
+		}
+	}
+	if (!found) {
+		arguments << "--template" << templateName;
+	}
 
 	if (!parameters.isEmpty())
 	{
@@ -152,6 +169,16 @@ void DBusMock::registerPolicyKit(const QVariantMap& parameters) {
 
 void DBusMock::registerTimeDate(const QVariantMap& parameters) {
 	registerTemplate("org.freedesktop.timedate1", "timedated", parameters,
+			QDBusConnection::SystemBus);
+}
+
+void DBusMock::registerHostname1(const QVariantMap& parameters) {
+	registerTemplate("org.freedesktop.hostname1", "org.freedesktop.hostname1", parameters,
+			QDBusConnection::SystemBus);
+}
+
+void DBusMock::registerLogin1(const QVariantMap& parameters) {
+	registerTemplate("org.freedesktop.login1", "org.freedesktop.login1", parameters,
 			QDBusConnection::SystemBus);
 }
 

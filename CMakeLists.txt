@@ -59,6 +59,7 @@ configure_file(
 
 add_subdirectory("src")
 add_subdirectory("data")
+add_subdirectory("templates")
 
 enable_testing()
 add_subdirectory(tests)

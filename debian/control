@@ -12,7 +12,7 @@ Build-Depends: cmake,
                pkg-config,
                python3-dbusmock (>= 0.16),
                qtbase5-dev,
-Standards-Version: 3.9.4
+Standards-Version: 3.9.7
 Homepage: https://launchpad.net/libqtdbustest
 # If you aren't a member of ~unity-team but need to upload packaging changes,
 # just go ahead.  ~unity-team will notice and sync up the code again.
@@ -24,6 +24,7 @@ Architecture: any
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends},
 Depends: python3-dbusmock (>= 0.16),
+         libqtdbusmock1-common (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Library for mocking DBus interactions using Qt
@@ -41,3 +42,13 @@ Description: Library for mocking DBus interactions using Qt
  A simple library for mocking DBus services with a Qt API
  .
  This package contains files that are needed to build.
+
+Package: libqtdbusmock1-common
+Section: libs
+Architecture: all
+Pre-Depends: ${misc:Pre-Depends},
+Depends: ${misc:Depends},
+Description: Library for mocking DBus interactions using Qt
+ A simple library for mocking DBus services with a Qt API
+ .
+ This package contains extra dbusmock templates.

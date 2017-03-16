@@ -77,6 +77,10 @@ public:
 
 	virtual void registerTimeDate(const QVariantMap& parameters = QVariantMap());
 
+	virtual void registerHostname1(const QVariantMap& parameters = QVariantMap());
+
+	virtual void registerLogin1(const QVariantMap& parameters = QVariantMap());
+
 	virtual void registerURfkill();
 
 	virtual void registerURfkill(const QVariantMap& parameters);
